@@ -1,6 +1,6 @@
 +++
 title = "A Note on Importance Sampling for State Space Models"
-subtitle = " "
+subtitle = ""
 
 date = 2020-08-03T00:00:00
 lastmod = 2020-08-03T00:00:00
