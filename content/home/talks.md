@@ -68,7 +68,7 @@ subtitle = ""
  # CSS class.
  css_class = ""
 +++
-:clipboard: BigSurv20, Utrecht University, 6, 13, 20, 27 November and 4 December 2020, virtual
+:clipboard: BigSurv20, Utrecht University, November/December 2020, virtual
 
 :clipboard: 12th World Congress of the Econometric Society, Bocconi University, 17-21 August 2020, virtual
 
