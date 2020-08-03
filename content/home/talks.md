@@ -68,3 +68,7 @@ subtitle = ""
  # CSS class.
  css_class = ""
 +++
+:clipboard: 13th International Conference on Computational and Financial Econometrics (CFE 2019), Senate House University of London, 14-16 December 2019, London, United Kingdom
+
+:clipboard: 6th RCEA Time Series Econometrics Workshop, The Rimini Centre for Economic Analysis, 22-23 June 2019, Larnaca, Cyprus
+
