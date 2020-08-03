@@ -16,25 +16,16 @@ weight = 50
 #One way we could make this different is to present the places of teaching as a smaller list with a click through to course descriptions and why we were teaching at that location. More in line with the project presentation line of reasoning. If we did each teaching engagement independently like a talk, and then aggregate them, then we could use schema.org metadata to describe each teaching engagement.
 
 +++
-<h2>Erasmus University Rotterdam</h2>
-
-_[Department of Econometrics](https://www.eur.nl/en/ese/department-econometrics)_
-
-+ **As coordinator**:
-    * BSc Econometrics: Statistics (more information in Courses below)
-+ **As teacher**:
-    * BSc Econometrics: Seminar in Financial Econometrics 
-    * MSc Econometrics: Seminar Case Studies in Applied Econometrics
-+ Supervision of BSc and MSc theses in Quantitative Finance
-
 <h2>Maastricht University</h2>
 
-_[Department of Quantitative Economics](https://www.maastrichtuniversity.nl/research/department-quantitative-economics)_
-
-+ **As coordinator**:
-    * BSc Econometrics: Mathematical Statistics
-    * MSc Econometrics: Time Series and Dynamic Econometrics
-+ **As teaching assistant**:
-    * BA Liberal Arts and Sciences: Statistics 1, Statistics 2
-    * BSc Econometrics: Analysis 1, Econometric Methods 1, Econometric Methods 2, Mathematical Statistics
-    * BSc International Business: Quantitative Methods 3
++ As tutor/teaching assistant:
+    * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
+    * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
+    * Pre-academic Training in Statistics (M.A.), 2018 - 2019
+    * Pre-academic Training in Mathematics (B.A.), 2019
+    * Quantitative Methods I (1st year B.Sc. in International Business), 2019
+    * Management of Operations and Product Development (2nd year B.Sc. in International Business), 2018
+    * Quantitative Methods III (2nd year B.Sc. in Economics), 2017
+    
++ Supervision of B.Sc. theses in Econometrics, 2018 - 2019
++ Second reader of M.Sc. theses in Econometrics, 2019
