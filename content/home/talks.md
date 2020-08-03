@@ -72,7 +72,7 @@ subtitle = ""
 
 :clipboard: 12th World Congress of the Econometric Society, Bocconi University, 17-21 August 2020, virtual
 
-:cliboard: Workshop on Time Series Methods for Official Statistics, OECD, 26-27 September 2019, Paris, France
+:clipboard: Workshop on Time Series Methods for Official Statistics, OECD, 26-27 September 2019, Paris, France
 
-:clipboard: 29th (EC)2 on Big Data Econometrics with Applications, Bank of Italy, 13-14 December 2018, Rome, Italy
+:clipboard: 29th $(EC)^2$ on Big Data Econometrics with Applications, Bank of Italy, 13-14 December 2018, Rome, Italy
 
