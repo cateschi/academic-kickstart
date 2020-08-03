@@ -18,16 +18,11 @@ weight = 70
 +++
 <h2>Co-Authors</h2>
 
-+ _[Eric Beutner](https://research.vu.nl/en/persons/eric-beutner)_
-+ _[Marina Friedrich](https://www.pik-potsdam.de/members/marinafr)_
-+ _[Yicong Lin](http://yiconglin.com)_
++ _[Siem Jan Koopman](http://sjkoopman.net/)_
 + _[Franz Palm](http://researchers-sbe.unimaas.nl/franzpalm/)_
-+ _[Stephan Smeekes](http://researchers-sbe.unimaas.nl/stephansmeekes/)_
++ _[Stephan Smeekes](https://www.stephansmeekes.nl/)_
++ _[Jan van den Brakel](https://www.maastrichtuniversity.nl/j.vandenbrakel)_
 
-<h2>Erasmus University Rotterdam</h2>
+_[Maastricht University Department of Quantitative Economics](https://www.maastrichtuniversity.nl/research/department-quantitative-economics)_
 
-_[Department of Econometrics](https://www.eur.nl/en/ese/department-econometrics)_
-
-<h2>Tinbergen Institute</h2>
-
-_[Tinbergen Institute Website](https://www.tinbergen.nl/home)_
+_[CBS - Statistics Netherlands](https://www.cbs.nl/en-gb)_
