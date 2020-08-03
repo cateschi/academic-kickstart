@@ -18,7 +18,7 @@ weight = 50
 +++
 <h2>Maastricht University</h2>
 
-The description of the courses can be found here(https://www.maastrichtuniversity.nl/education/course-finder)
+The description of the courses can be found _[here](https://www.maastrichtuniversity.nl/education/course-finder)_
 
 + As tutor/teaching assistant:
   * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
