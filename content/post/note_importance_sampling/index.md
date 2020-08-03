@@ -1,5 +1,5 @@
 +++
-title = "A Note on Importance Sampling for State Space Models"
+title = "A note on importance sampling for state space models"
 subtitle = ""
 
 date = 2020-08-03T00:00:00
