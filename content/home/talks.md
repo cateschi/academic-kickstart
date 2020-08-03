@@ -68,7 +68,11 @@ subtitle = ""
  # CSS class.
  css_class = ""
 +++
-:clipboard: 13th International Conference on Computational and Financial Econometrics (CFE 2019), Senate House University of London, 14-16 December 2019, London, United Kingdom
+:clipboard: BigSurv20, Utrecht University, 6, 13, 20, 27 November and 4 December 2020, virtual
 
-:clipboard: 6th RCEA Time Series Econometrics Workshop, The Rimini Centre for Economic Analysis, 22-23 June 2019, Larnaca, Cyprus
+:clipboard: 12th World Congress of the Econometric Society, Bocconi University, 17-21 August 2020, virtual
+
+:cliboard: Workshop on Time Series Methods for Official Statistics, OECD, 26-27 September 2019, Paris, France
+
+:clipboard: 29th (EC)2 on Big Data Econometrics with Applications, Bank of Italy, 13-14 December 2018, Rome, Italy
 
