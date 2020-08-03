@@ -33,7 +33,7 @@ education:
     institution: Maastricht University
     year: 2016
   - course: B.Sc. in Statistics
-    institution: Sapienza - Universita di Roma
+    institution: Sapienza - Università di Roma
     year: 2015
 
 # Social/Academic Networking
