@@ -19,13 +19,12 @@ weight = 50
 <h2>Maastricht University</h2>
 
 + As tutor/teaching assistant:
-    * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
-    * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
-    * Pre-academic Training in Statistics (M.A.), 2018 - 2019
-    * Pre-academic Training in Mathematics (B.A.), 2019
-    * Quantitative Methods I (1st year B.Sc. in International Business), 2019
-    * Management of Operations and Product Development (2nd year B.Sc. in International Business), 2018
-    * Quantitative Methods III (2nd year B.Sc. in Economics), 2017
-    
+  * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
+  * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
+  * Pre-academic Training in Statistics (M.A.), 2018 - 2019
+  * Pre-academic Training in Mathematics (B.A.), 2019
+  * Quantitative Methods I (1st year B.Sc. in International Business), 2019
+  * Management of Operations and Product Development (2nd year B.Sc. in International Business), 2018
+  * Quantitative Methods III (2nd year B.Sc. in Economics), 2017
 + Supervision of B.Sc. theses in Econometrics, 2018 - 2019
 + Second reader of M.Sc. theses in Econometrics, 2019
