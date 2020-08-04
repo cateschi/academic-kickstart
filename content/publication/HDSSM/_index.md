@@ -10,4 +10,6 @@ publication_type = "3"
 title = "A dynamic factor model approach to incorporate Big Data in state space models for official statistics"
 url_preprint = "https://arxiv.org/abs/1901.11355v1"
 url_code = "https://github.com/cateschi/High_dimensional_state_space_model"
+
+selected = true
 +++
