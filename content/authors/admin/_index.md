@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: PhD Candidate in Econometrics
+role: PhD candidate in Econometrics
 
 # Organizations/Affiliations
 organizations:
@@ -63,4 +63,4 @@ user_groups:
 - Visitors
 ---
 
-I am a PhD Candidate in Econometrics at Maastricht University and Statistics Netherlands. My research focuses on time series methods for the production of official statistics and to model air pollutants. Before starting my PhD, I completed an internship in data analysis at the United Nations Refugee Agency.
+I am a PhD candidate in Econometrics at Maastricht University and Statistics Netherlands. My research focuses on time series methods for the production of official statistics and to model air pollutants. Before starting my PhD, I completed an internship in data analysis at the United Nations Refugee Agency.
