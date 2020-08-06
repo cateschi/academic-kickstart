@@ -92,23 +92,23 @@ The linear Gaussian state space model takes the following form:
 \label{eq:normal_linear_ssm}
 \end{equation}
 
-for $t=1, \dots, T$, where $\boldsymbol{y}\_t$ is a $n \times 1$ vector, and $\boldsymbol{\alpha}\_t$ is a $m \times 1$ vector. The observation equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\boldsymbol{y}\_t \sim g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) = g_{\boldsymbol{\varepsilon}\_t}(\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t) = NID(\mathbf{0}, \boldsymbol{H})$, where $g$ indicates a linear Gaussian density. The log-likelihood of $\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t$ takes the form:
+for $t=1, \dots, T$, where $\boldsymbol{y}\_t$ is a $n \times 1$ vector, and $\boldsymbol{\alpha}\_t$ is a $m \times 1$ vector. The observation equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\boldsymbol{y}\_t \sim g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) = g_{\boldsymbol{\varepsilon}\_t}(\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t) = NID(\boldsymbol{0}, \boldsymbol{H})$, where $g$ indicates a linear Gaussian density. The log-likelihood of $\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t$ takes the form:
 
 \begin{equation*}
 \log g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det\boldsymbol{H}) - \frac{1}{2} (\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t)' \boldsymbol{H}^{-1} (\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t),
 \end{equation*}
 
-for $t=1, \dots, T$. The transition equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\valpha_{t+1} \sim g(\valpha_{t+1} | \boldsymbol{\alpha}\_t) = g_{\veta_t}(\valpha_{t+1} -  \mT \boldsymbol{\alpha}\_t) = NID(\vzeros, \boldsymbol{Q})$. The log-likelihood of $\valpha_{t+1} | \boldsymbol{\alpha}\_t$ takes the form:
+for $t=1, \dots, T$. The transition equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\boldsymbol{\alpha}\_{t+1} \sim g(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t) = g_{\veta_t}(\boldsymbol{\alpha}\_{t+1} -  \mT \boldsymbol{\alpha}\_t) = NID(\vzeros, \boldsymbol{Q})$. The log-likelihood of $\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t$ takes the form:
 \begin{equation} \label{eq:gaussian_state}
-\log g(\valpha_{t+1} | \boldsymbol{\alpha}\_t = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det \boldsymbol{Q}) - \frac{1}{2} (\valpha_{t+1} -  \mT \boldsymbol{\alpha}\_t)' \boldsymbol{Q}^{-1} (\valpha_{t+1} -  \mT \boldsymbol{\alpha}\_t).
+\log g(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det \boldsymbol{Q}) - \frac{1}{2} (\boldsymbol{\alpha}\_{t+1} -  \mT \boldsymbol{\alpha}\_t)' \boldsymbol{Q}^{-1} (\boldsymbol{\alpha}\_{t+1} -  \mT \boldsymbol{\alpha}\_t).
 \end{equation}
 
-for $t=1, \dots, T$. The initial value of the state vector $\valpha_1 \sim g(\valpha_1) = N(\vzeros, \mP_1)$. Finally, we define the the joint density:
+for $t=1, \dots, T$. The initial value of the state vector $\boldsymbol{\alpha}\_1 \sim g(\boldsymbol{\alpha}\_1) = N(\vzeros, \mP_1)$. Finally, we define the the joint density:
 \begin{equation*}
-g(\valpha, Y_T) = g(\valpha_1) \prod_{t=1}^T g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) g(\valpha_{t+1}|\boldsymbol{\alpha}\_t) = g(\valpha_1) \prod_{t=1}^T g_{\vvarepsilon_t}(\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t)g_{\veta_t}(\valpha_{t+1} -  \mT \boldsymbol{\alpha}\_t),
+g(\boldsymbol{\alpha}, Y_T) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) g(\boldsymbol{\alpha}\_{t+1}|\boldsymbol{\alpha}\_t) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g_{\vvarepsilon_t}(\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t)g_{\veta_t}(\boldsymbol{\alpha}\_{t+1} -  \mT \boldsymbol{\alpha}\_t),
 \end{equation*}
 
-where $\valpha$ if the $mT \times 1$ state vector, and $Y_T$ is the $nT \times 1$ vector of observed series.
+where $\boldsymbol{\alpha}$ if the $mT \times 1$ state vector, and $Y_T$ is the $nT \times 1$ vector of observed series.
 
 The parameters of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} can be estimated by maximizing the following log-likelihood
 \begin{equation} \label{eq:logl_y}
@@ -120,7 +120,7 @@ where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\mF
 \begin{equation*}
 \begin{aligned}
 \boldsymbol{v}\_t &= \boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{a}\_t \\\\\\
-\mF_t &= \boldsymbol{Z} \mP_t \boldsymbol{Z}' + \boldsymbol{H} \\\\\\
+\boldsymbol{F}\_t &= \boldsymbol{Z} \boldsymbol{P}\_t \boldsymbol{Z}' + \boldsymbol{H} \\\\\\
 \boldsymbol{K}\_t &= \boldsymbol{T} \boldsymbol{P}\_t \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \\\\\\
 \boldsymbol{a}\_{t|t} &= \boldsymbol{a}\_t + \boldsymbol{P}\_t \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \boldsymbol{v}\_t \\\\\\
 \boldsymbol{P}\_{t|t} &= \boldsymbol{P}\_t - \boldsymbol{P}\_t \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \boldsymbol{Z} \boldsymbol{P}\_t \\\\\\
@@ -138,7 +138,7 @@ Let us define $\vtheta_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 
 \begin{equation*}
 \begin{aligned}
 \vr_{t-1} &= \boldsymbol{Z}'\mF_t^{-1} \vv_t + \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right)'\vr_t \\
-\hat{\valpha}_t &= \va_t + \mP_t \vr_{t-1}
+\hat{\boldsymbol{\alpha}}\_t &= \va_t + \mP_t \vr_{t-1}
 \end{aligned}
 \end{equation*} 
 \end{minipage}
@@ -151,7 +151,7 @@ Let us define $\vtheta_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 
 \end{equation}
 \end{minipage}  \vspace{0.5em}
 
-for $t=T, \dots, 1$, with $\vr_T= \vzeros$, $\mN_T = \vzeros$, and $\mV_t$ being the smoothed covariance matrix of $\hat{\valpha}_t$.
+for $t=T, \dots, 1$, with $\vr_T= \vzeros$, $\mN_T = \vzeros$, and $\mV_t$ being the smoothed covariance matrix of $\hat{\boldsymbol{\alpha}}\_t$.
 
 
 
