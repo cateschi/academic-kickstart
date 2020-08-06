@@ -216,7 +216,7 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 ## Acknowledgments
 
-I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for providing material that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes, and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
+I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for providing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
 
 
 
