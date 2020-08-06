@@ -152,7 +152,7 @@ Suppose now that either the observation or the transition equation (or both) of 
 
 \begin{equation} \label{eq:nonnormal_nonlinear_ssm}
 \begin{aligned}
-\boldsymbol{y}\_t &\sim p(\boldsymbol{y}\_t | \boldsymbol{\theta}\_t) \\
+\boldsymbol{y}\_t &\sim p(\boldsymbol{y}\_t | \boldsymbol{\theta}\_t) \\\\\\
 \boldsymbol{\alpha}\_{t+1} &\sim p(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t),
 \end{aligned}
 \end{equation}
