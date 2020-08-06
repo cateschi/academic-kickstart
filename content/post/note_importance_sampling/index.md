@@ -92,7 +92,7 @@ The linear Gaussian state space model takes the following form:
 \label{eq:normal_linear_ssm}
 \end{equation}
 
-for $t=1, \ldots, T$, where $\mathbf{y}\_t$ is a $n \times 1$ vector, and $\boldsymbol{\alpha}\_t$ is a $m \times 1$ vector. The observation equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\mathbf{y}\_t \sim g(\mathbf{y}\_t | \boldsymbol{\alpha}\_t) = g_{\boldsymbol{\varepsilon}\_t}(\mathbf{y}\_t - \mathbf{Z} \boldsymbol{\alpha}\_t) = NID(\mathbf{0}, \mathbf{H})$, where $g$ indicates a linear Gaussian density. The log-likelihood of $\mathbf{y}\_t | \boldsymbol{\alpha}\_t$ takes the:
+for $t=1, \ldots, T$, where $\mathbf{y}\_t$ is a $n \times 1$ vector, and $\boldsymbol{\alpha}\_t$ is a $m \times 1$ vector. The observation equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\mathbf{y}\_t \sim g(\mathbf{y}\_t | \boldsymbol{\alpha}\_t) = g_{\boldsymbol{\varepsilon}\_t}(\mathbf{y}\_t - \mathbf{Z} \boldsymbol{\alpha}\_t) = NID(\mathbf{0}, \mathbf{H})$, where $g$ indicates a linear Gaussian density. The log-likelihood of $\mathbf{y}\_t | \boldsymbol{\alpha}\_t$ takes the form:
 
 
 
