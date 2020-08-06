@@ -85,7 +85,10 @@ caption = "Cupcake"
 The linear Gaussian state space model takes the following form:
 
 \begin{equation}
-\mathbf{y}\_t = \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}\_t \sim NID \left( \mathbf{0}, \mathbf{H} \right) 
+\begin{aligned}
+\mathbf{y}\_t = \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}\_t \sim NID \left( \mathbf{0}, \mathbf{H} \right) \\\\\\
+\boldsymbol{\alpha}\_{t+1} &= \mathbf{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \\qquad \boldsymbol{\eta}\_t \sim NID \left( \mathbf{0}, \mathbf{Q} \right),
+\end{aligned}
 \label{eq:normal_linear_ssm}
 \end{equation}
 
