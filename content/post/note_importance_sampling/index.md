@@ -174,6 +174,50 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 
+### Importance sampling
+
+
+
+#### Monte Carlo integration
+
+
+
+#### Choice of the importance density
+
+
+
+#### Simulation smoothing
+
+
+
+#### Evaluation and maximization of the log-likelihood
+
+
+
+#### Implementation remarks
+
+
+
+### Modified efficient importance sampling
+
+
+
+## Examples
+
+
+
+#### Poisson model
+
+
+
+#### Stochastic volatility model
+
+
+
+## Acknowledgments
+
+
+
 ## References
 
 [^durbinkoopman2012]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
