@@ -133,25 +133,16 @@ for $t = 1, \dots, T$. The $m \times 1$ vector $\boldsymbol{a}\_{t|t}$ is the fi
 
 Let us define $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 1$ signal vector (this will simplify some derivations). More accurate estimates of the signal vector can be efficiently obtained by applying an additional Kalman smoother; we define the estimate from the Kalman filter smoother (KFS) as $\hat{\boldsymbol{\theta}}\_t = \text{E} (\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \arg \max_{\boldsymbol{\alpha}\_t} g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, for $t=1, \dots, T$, which implies that $\hat{\boldsymbol{\theta}}\_t$ is the mode of $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. The Kalman smoother recursions of \cite{durbinkoopman2012} are:
 
-\vspace{0.5em}
-\begin{minipage}{.46\textwidth}
 \begin{equation*}
 \begin{aligned}
-\vr_{t-1} &= \boldsymbol{Z}'\mF_t^{-1} \vv_t + \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right)'\vr_t \\
-\hat{\boldsymbol{\alpha}}\_t &= \va_t + \mP_t \vr_{t-1}
+\boldsymbol{r}\_{t-1} &= \boldsymbol{Z}'\boldsymbol{F}\_t^{-1} \boldsymbol{v}\_t + \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)'\boldsymbol{r}\_t \\\\\\
+\hat{\boldsymbol{\alpha}}\_t &= \boldsymbol{a}\_t + \boldsymbol{P}\_t \boldsymbol{r}\_{t-1} \\\\\\
+\boldsymbol{N}\_{t-1} &= \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \boldsymbol{Z} + \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)' \boldsymbol{N}\_t \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right) \\\\\\
+\boldsymbol{V}\_t &= \boldsymbol{P}\_t - \boldsymbol{P}\_t \boldsymbol{N}\_{t-1} \boldsymbol{P}\_t,
 \end{aligned}
-\end{equation*} 
-\end{minipage}
-\begin{minipage}{.5\textwidth}
-\begin{equation} \label{eq:KFS}
-\begin{aligned}
-\mN_{t-1} &= \boldsymbol{Z}' \mF_t^{-1} \boldsymbol{Z} + \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right)' \mN_t \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right) \\
-\mV_t &= \mP_t - \mP_t \mN_{t-1} \mP_t,
-\end{aligned}
-\end{equation}
-\end{minipage}  \vspace{0.5em}
+\end{equation*}
 
-for $t=T, \dots, 1$, with $\vr_T= \vzeros$, $\mN_T = \vzeros$, and $\mV_t$ being the smoothed covariance matrix of $\hat{\boldsymbol{\alpha}}\_t$.
+for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_T = \boldsymbol{0}$, and $\boldsymbol{V}\_t$ being the smoothed covariance matrix of $\hat{\boldsymbol{\alpha}}\_t$.
 
 
 
