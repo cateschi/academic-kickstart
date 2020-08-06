@@ -96,7 +96,7 @@ Consider a standard multivariate regression model $y_t^{} = \mathbf{x}_t' \bolds
 
 The linear Gaussian state space model takes the following form:
 $$
-\mathbf{y}\_t = \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}_\t \sim N \left( \mathbf{0}, \mathbf{H} \right)
+\mathbf{y}\_t = \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}\_t \sim N \left( \mathbf{0}, \mathbf{H} \right)
 $$
 
 
