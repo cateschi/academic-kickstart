@@ -111,7 +111,7 @@ g(\boldsymbol{\alpha}, Y_T) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g(\boldsym
 where $\boldsymbol{\alpha}$ if the $mT \times 1$ state vector, and $Y_T$ is the $nT \times 1$ vector of observed series.
 
 The parameters of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} can be estimated by maximizing the following log-likelihood
-\begin{align} \label{eq:logl_y}
+\begin{align} 
 \log g(\boldsymbol{y}\_t) = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det \boldsymbol{F}\_t) - \frac{1}{2} \boldsymbol{v}\_t' \boldsymbol{F}\_t^{-1} \boldsymbol{v}\_t,
 \end{align}
 
