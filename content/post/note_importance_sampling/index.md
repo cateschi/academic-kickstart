@@ -131,7 +131,7 @@ where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\bo
 
 for $t = 1, \dots, T$. The $m \times 1$ vector $\boldsymbol{a}\_{t|t}$ is the filter estimate of the state vector $\boldsymbol{\alpha}\_t$, and $\boldsymbol{P}\_{t|t}$ is the respective covariance matrix. 
 
-Let us define $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 1$ signal vector (this will simplify some derivations). More accurate estimates of the signal vector can be efficiently obtained by applying an additional Kalman smoother; we define the estimate from the Kalman filter smoother (KFS) as $\hat{\boldsymbol{\theta}}\_t = \text{E} (\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \arg \max_{\boldsymbol{\alpha}\_t} g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, for $t=1, \dots, T$, which implies that $\hat{\boldsymbol{\theta}}\_t$ is the mode of $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. The Kalman smoother recursions of \cite{durbinkoopman2012} are:
+Let us define $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 1$ signal vector (this will simplify some derivations). More accurate estimates of the signal vector can be efficiently obtained by applying an additional Kalman smoother; we define the estimate from the Kalman filter smoother (KFS) as $\hat{\boldsymbol{\theta}}\_t = \text{E} (\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \arg \max_{\boldsymbol{\alpha}\_t} g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, for $t=1, \dots, T$, which implies that $\hat{\boldsymbol{\theta}}\_t$ is the mode of $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. The Kalman smoother recursions of Durbin and Koopman (2012)[^1] are:
 
 \begin{equation*}
 \begin{aligned}
@@ -146,4 +146,6 @@ for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_
 
 
 
+## References
 
+[^1]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Editionn_, Oxford Statistical Science Series. OUP Oxford.
