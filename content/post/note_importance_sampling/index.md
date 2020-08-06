@@ -146,6 +146,23 @@ for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_
 
 
 
+## Nonlinear non-Guassian state space model
+
+Suppose now that either the observation or the transition equation (or both) of the state space model are nonlinear and non-Gaussian:
+
+\begin{equation} \label{eq:nonnormal_nonlinear_ssm}
+\begin{aligned}
+\boldsymbol{y}\_t &\sim p(\boldsymbol{y}\_t | \boldsymbol{\theta}\_t) \\
+\boldsymbol{\alpha}\_{t+1} &\sim p(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t),
+\end{aligned}
+\end{equation}
+
+for $t=1, \dots, T$, where $p$ indicates that the the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
+
+In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity we cannot apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, we can apply the usual Kalman filter if we assume a density that belongs to the family of exponential distributions, because in this case the Kalman filter is still the best _linear_ unbiased estimator, and we can rely on quasi maximum likelihood results for the estimation of the parameters.
+
+
+
 ## References
 
 [^durbinkoopman2012]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
