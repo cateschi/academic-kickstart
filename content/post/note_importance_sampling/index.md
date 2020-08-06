@@ -89,6 +89,7 @@ The linear Gaussian state space model takes the following form:
 \boldsymbol{y}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}\_t \sim NID \left( \boldsymbol{0}, \boldsymbol{H} \right) \\\\\\
 \boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \\qquad \boldsymbol{\eta}\_t \sim NID \left( \boldsymbol{0}, \boldsymbol{Q} \right),
 \end{aligned}
+\tag{1}
 \label{eq:normal_linear_ssm}
 \end{equation}
 
@@ -99,11 +100,15 @@ for $t=1, \dots, T$, where $\boldsymbol{y}\_t$ is a $n \times 1$ vector, and $\b
 \end{equation*}
 
 for $t=1, \dots, T$. The transition equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\boldsymbol{\alpha}\_{t+1} \sim g(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t) = g_{\eta_t}(\boldsymbol{\alpha}\_{t+1} -  \boldsymbol{T} \boldsymbol{\alpha}\_t) = NID(\boldsymbol{0}, \boldsymbol{Q})$. The log-likelihood of $\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t$ takes the form:
-\begin{equation} \label{eq:gaussian_state}
+
+\begin{equation} 
 \log g(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t ) = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det \boldsymbol{Q}) - \frac{1}{2} (\boldsymbol{\alpha}\_{t+1} -  \boldsymbol{T} \boldsymbol{\alpha}\_t)' \boldsymbol{Q}^{-1} (\boldsymbol{\alpha}\_{t+1} -  \boldsymbol{T} \boldsymbol{\alpha}\_t),
+\tag{2}
+\label{eq:gaussian_state}
 \end{equation}
 
 for $t=1, \dots, T$. The initial value of the state vector $\boldsymbol{\alpha}\_1 \sim g(\boldsymbol{\alpha}\_1) = N(\boldsymbol{0}, \boldsymbol{P}\_1)$. Finally, I define the the joint density:
+
 \begin{equation*}
 g(\boldsymbol{\alpha}, Y_T) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g(\boldsymbol{y}\_t | \boldsymbol{\alpha}\_t) g(\boldsymbol{\alpha}\_{t+1}|\boldsymbol{\alpha}\_t) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g_{\varepsilon_t}(\boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{\alpha}\_t)g_{\eta_t}(\boldsymbol{\alpha}\_{t+1} -  \boldsymbol{T} \boldsymbol{\alpha}\_t),
 \end{equation*}
@@ -111,9 +116,10 @@ g(\boldsymbol{\alpha}, Y_T) = g(\boldsymbol{\alpha}\_1) \prod_{t=1}^T g(\boldsym
 where $\boldsymbol{\alpha}$ if the $mT \times 1$ state vector, and $Y_T$ is the $nT \times 1$ vector of observed series.
 
 The parameters of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} can be estimated by maximizing the following log-likelihood
+
 \begin{equation} 
 \log g(\boldsymbol{y}\_t) = - \frac{n}{2} \log(2 \pi) - \frac{1}{2} \log(\det \boldsymbol{F}\_t) - \frac{1}{2} \boldsymbol{v}\_t' \boldsymbol{F}\_t^{-1} \boldsymbol{v}\_t,
-\tag{1}
+\tag{3}
 \label{eq:logl_y}
 \end{equation}
 
