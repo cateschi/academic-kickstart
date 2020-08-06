@@ -137,7 +137,7 @@ Let us define $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ t
 \begin{aligned}
 \boldsymbol{r}\_{t-1} &= \boldsymbol{Z}'\boldsymbol{F}\_t^{-1} \boldsymbol{v}\_t + \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)'\boldsymbol{r}\_t \\\\\\
 \hat{\boldsymbol{\alpha}}\_t &= \boldsymbol{a}\_t + \boldsymbol{P}\_t \boldsymbol{r}\_{t-1} \\\\\\
-\boldsymbol{N}\_{t-1} &= \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \boldsymbol{Z} + \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)' \boldsymbol{N}\_t \left(\mT - \boldsymbol{K}\_t \boldsymbol{Z} \right) \\\\\\
+\boldsymbol{N}\_{t-1} &= \boldsymbol{Z}' \boldsymbol{F}\_t^{-1} \boldsymbol{Z} + \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)' \boldsymbol{N}\_t \left(\boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right) \\\\\\
 \boldsymbol{V}\_t &= \boldsymbol{P}\_t - \boldsymbol{P}\_t \boldsymbol{N}\_{t-1} \boldsymbol{P}\_t,
 \end{aligned}
 \end{equation*}
