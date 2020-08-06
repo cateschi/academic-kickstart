@@ -80,7 +80,7 @@ caption = "Cupcake"
 +++
 
 
-### Linear Gaussian state space model
+## Linear Gaussian state space model
 
 The linear Gaussian state space model takes the following form:
 
@@ -146,7 +146,7 @@ for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_
 
 
 
-### Nonlinear non-Guassian state space model
+## Nonlinear non-Guassian state space model
 
 Suppose now that either the observation or the transition equation (or both) of the state space model are nonlinear and non-Gaussian:
 
@@ -163,10 +163,10 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 
-## Mode estimation
+### Mode estimation
 
 
 
-### References
+## References
 
 [^durbinkoopman2012]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
