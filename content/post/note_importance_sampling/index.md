@@ -80,7 +80,7 @@ caption = "Cupcake"
 +++
 
 
-## Linear Gaussian state space model
+### Linear Gaussian state space model
 
 The linear Gaussian state space model takes the following form:
 
@@ -146,7 +146,7 @@ for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_
 
 
 
-## Nonlinear non-Guassian state space model
+### Nonlinear non-Guassian state space model
 
 Suppose now that either the observation or the transition equation (or both) of the state space model are nonlinear and non-Gaussian:
 
@@ -157,9 +157,13 @@ Suppose now that either the observation or the transition equation (or both) of 
 \end{aligned}
 \end{equation}
 
-for $t=1, \dots, T$, where $p$ indicates that the the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
+for $t=1, \dots, T$, where $p$ indicates that the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
 
 In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity we cannot apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, we can apply the usual Kalman filter if we assume a density that belongs to the family of exponential distributions, because in this case the Kalman filter is still the best _linear_ unbiased estimator, and we can rely on quasi maximum likelihood results for the estimation of the parameters.
+
+
+
+## Mode estimation
 
 
 
