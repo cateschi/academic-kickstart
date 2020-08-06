@@ -84,12 +84,12 @@ caption = "Cupcake"
 
 The linear Gaussian state space model takes the following form:
 
-\begin{equation} \label{eq:normal_linear_ssm}
+$$ \label{eq:normal_linear_ssm}
 \begin{aligned} 
 \mathbf{y}\_t &= \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}\_t \sim N \left( \mathbf{0}, \mathbf{H} \right) \\\\\\
 \boldsymbol{\alpha}\_{t+1} &= \mathbf{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \\qquad \boldsymbol{\eta}\_t \sim N \left( \mathbf{0}, \mathbf{Q} \right),
 \end{aligned}
-\end{equation}
+$$
 
 for $t=1, \ldots, T$, where $\mathbf{y}\_t$ is a $n \times 1$ vector, and $\boldsymbol{\alpha}\_t$ is a $m \times 1$ vector. The observation equation of the linear Gaussian state space model \eqref{eq:normal_linear_ssm} implies that $\mathbf{y}\_t \sim g(\mathbf{y}\_t | \boldsymbol{\alpha}\_t) = g_{\boldsymbol{\varepsilon}\_t}(\mathbf{y}\_t - \mathbf{Z} \boldsymbol{\alpha}\_t) = NID(\mathbf{0}, \mathbf{H})$, where $g$ indicates a linear Gaussian density. The log-likelihood of $\mathbf{y}\_t | \boldsymbol{\alpha}\_t$ takes the form:
 
