@@ -91,3 +91,14 @@ Consider a standard multivariate regression model $y_t^{} = \mathbf{x}_t' \bolds
 2. Obtain the residuals $\widehat{u}_t=y\_t- \mathbf{x}\_t'\widehat{\boldsymbol \beta}$ for $t = 1, 2, . . . , T$.
 3. The Durbin-Watson test statisic is now computed as $DW= \frac{\\sum\_{t=2}^T \left(\widehat{u}\_t-\widehat{u}\_{t-1}\right)^2  }{\sum_{t=1}^T \widehat{u}_t^2}$.
 
+
+## Linear Gaussian state space model
+
+The linear Gaussian state space model takes the following form:
+$$
+\mathbf{y}\_t &= \mathbf{Z} \boldsymbol{\alpha}\_t + \boldsymbol{\varepsilon}\_t, \\qquad  \boldsymbol{\varepsilon}_\t \sim N \left( \mathbf{0}, \mathbf{H} \right)
+$$
+
+
+
+
