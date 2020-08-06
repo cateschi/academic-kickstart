@@ -82,7 +82,7 @@ caption = "Cupcake"
 
 ## Linear Gaussian state space model
 
- linear Gaussian state space model takes the following form:
+The linear Gaussian state space model takes the following form:
 
 \begin{equation}
 \begin{aligned}
@@ -158,7 +158,6 @@ Suppose now that either the observation or the transition equation (or both) of 
 \end{equation}
 
 for $t=1, \dots, T$, where $p$ indicates that the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
-
 In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity we cannot apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, we can apply the usual Kalman filter if we assume a density that belongs to the family of exponential distributions, because in this case the Kalman filter is still the best _linear_ unbiased estimator, and we can rely on quasi maximum likelihood results for the estimation of the parameters.
 
 
