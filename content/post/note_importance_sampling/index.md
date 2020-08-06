@@ -167,6 +167,6 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 
-## References
+### References
 
 [^durbinkoopman2012]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
