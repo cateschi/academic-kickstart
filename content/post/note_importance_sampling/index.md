@@ -166,7 +166,7 @@ Suppose now that either the observation or the transition equation (or both) of 
 \end{equation}
 
 for $t=1, \dots, T$, where $p$ indicates that the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
-In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity it is not possible to apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, it is possible to apply the usual Kalman filter if a density that belongs to the family of exponential distributions is assumed. In this case the Kalman filter is still the best _linear_ unbiased estimator, and one can rely on quasi maximum likelihood results for the estimation of the parameters.
+In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity it is not possible to apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, it is possible to apply the usual Kalman filter if a density that belongs to the family of exponential distributions is assumed. The Kalman filter would still be the best _linear_ unbiased estimator, and one can rely on quasi maximum likelihood results for the estimation of the parameters.
 
 
 
