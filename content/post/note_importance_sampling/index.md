@@ -82,8 +82,6 @@ caption = "Cupcake"
 
 ### Linear Gaussian state space model
 
-\section{a section}
-
 The linear Gaussian state space model takes the following form:
 
 \begin{equation}
