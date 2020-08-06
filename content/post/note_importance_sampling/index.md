@@ -206,11 +206,11 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 
-#### Poisson model
+### Poisson model
 
 
 
-#### Stochastic volatility model
+### Stochastic volatility model
 
 
 
