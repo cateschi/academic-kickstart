@@ -301,7 +301,7 @@ with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y
 \end{aligned}
 \end{equation*}
 
-for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in section \ref{section:mode}. We are now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
+for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in the "Mode estimation" section. We are now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
 \begin{equation*}
 \begin{aligned}
 & \left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
@@ -320,7 +320,7 @@ for  $t=1, \dots, T$.
 \end{aligned}
 \end{equation*}
 
-for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in section \ref{section:mode} and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in section \ref{section:mode} and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. We therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
+for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. We therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
 \begin{equation} 
 \log g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t) = - \frac{\dim(\boldsymbol{z}\_t)}{2} \log (2 \pi) + \frac{1}{2} \log (\det\boldsymbol{A}\_t^{-1}) - \frac{1}{2}(\boldsymbol{z}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{A}\_t^{-1} (\boldsymbol{z}\_t - \boldsymbol{\theta}\_t),
 \tag{7}
@@ -329,7 +329,7 @@ for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, 
 
 for  $t=1, \dots, T$, which can be used in order to evaluate the importance weights.
 
-The method described above to choose $\boldsymbol{C}\_t$ and $\boldsymbol{b}\_t$, which is based on mode estimation, is called SPDK in the literature (after \cite{ShephardPitt1997} and \cite{DurbinKoopman1997}).
+The method described above to choose $\boldsymbol{C}\_t$ and $\boldsymbol{b}\_t$, which is based on mode estimation, is called SPDK in the literature (after Shephard and Pitt (1997)[^ShephardPitt1997] and Durbin and Koopman (1997)[^DurbinKoopman1997]).
 
 
 
