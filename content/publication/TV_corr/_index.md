@@ -2,7 +2,7 @@
 abstract = ""
 
 authors = ["Siem Jan Koopman, Franz Palm, Caterina Schiavoni, Stephan Smeekes and Jan van den Brakel"]
-date = 2020-01-01T00:00:00
+date = 2020-08-03T00:00:00
 # publication = "Working Paper"
 
 publication_type = "3"
