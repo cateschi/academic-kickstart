@@ -272,7 +272,7 @@ As already mentioned, in order to compute the Monte Carlo estimator \eqref{eq:MC
 
 Since $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)$ is Gaussian, it can take the general expression
 \begin{equation*}
-g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = \exp \left( d_t + \boldsymbol{b}\_t' \boldsymbol{\theta}\_t - \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \right)
+g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = \exp \left( d_t + \boldsymbol{b}\_t' \boldsymbol{\theta}\_t - \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \right),
 \end{equation*}
 
 for $t=1, \dots, T$. If I consider the linear Gaussian state space model
