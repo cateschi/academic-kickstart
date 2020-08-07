@@ -171,6 +171,7 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 ### Mode estimation
+
 Shephard and Pitt (1997)[^ShephardPitt1997] and Durbin and Koopman (1997)[^DurbinKoopman1997] argue that it is still possible estimate the signal vector of a nonlinear non-Gaussian model by mode estimation, i.e. find
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_t = \arg \max_{\boldsymbol{\theta}\_t} p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t),
@@ -204,6 +205,8 @@ Later in this note it will become clearer why we can use the approximate linear 
 
 ### Importance sampling
 
+Importance sampling is an alternative and more accurate way for state estimation than mode estimation, but it can make use of the latter method. Below I explain how it works.
+
 
 
 #### Monte Carlo integration
@@ -222,7 +225,7 @@ It can be shown that $\hat{\boldsymbol{\theta}}\_{\text{M}}$ is an unbiased esti
 
 In the case of the nonlinear non-Gaussian state space model, we wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$, which we do not know, but we can instead sample from a linear Gaussian distribution $g(\boldsymbol{\theta}|Y_T)$, which should resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible:
 \begin{equation*}
-\E (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \Theta} \frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)} g(\boldsymbol{\theta}|Y_T) d\boldsymbol{\theta} = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right],
+\text{E} (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \Theta} \frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)} g(\boldsymbol{\theta}|Y_T) d\boldsymbol{\theta} = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right],
 \end{equation*}
 
 where the subscript $g$ in the expectation operator indicates that the expectation is taken with respect to the Gaussian density $g(\boldsymbol{\theta}|Y_T)$, which I refer to as importance density. The Monte Carlo estimator of this expectation is then
@@ -235,28 +238,30 @@ In order to compute $\hat{\boldsymbol{\theta}}\_{\text{M}}$ based on the previou
 \text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} g(Y_T)p(\boldsymbol{\theta},Y_T)}{p(Y_T)g(\boldsymbol{\theta},Y_T)}\right] = \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\frac{\boldsymbol{\theta}\ p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] =  \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\boldsymbol{\theta} w(\boldsymbol{\theta}, Y_T) \right],
 \end{equation*}
 
-where $w(\vtheta, Y_T)=\frac{ p(\vtheta,Y_T)}{g(\vtheta,Y_T)}$ are called importance weights. For $\E (\vtheta) =1$, then $p(Y_T) = g(Y_T) \E_g \left[\vtheta w(\vtheta, Y_T) \right]$, which implies that the final expression for $\E (\vtheta)$ is given by
+where $w(\boldsymbol{\theta}, Y_T)=\frac{ p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}$ are called importance weights. For $\text{E} (\boldsymbol{\theta}) =1$, then $p(Y_T) = g(Y_T) \text{E}\_g \left[\boldsymbol{\theta} w(\boldsymbol{\theta}, Y_T) \right]$, which implies that the final expression for $\E (\boldsymbol{\theta})$ is given by
 \begin{equation*}
-\E (\vtheta) =  \frac{\E_g \left[\vtheta w(\vtheta, Y_T) \right]}{\E_g \left[ w(\vtheta, Y_T) \right]},
+\text{E} (\boldsymbol{\theta}) =  \frac{\text{E}\_g \left[\boldsymbol{\theta} w(\boldsymbol{\theta}, Y_T) \right]}{\text{E}\_g \left[ w(\boldsymbol{\theta}, Y_T) \right]},
 \end{equation*}
 
 and its Monte Carlo estimator is 
-\begin{equation} \label{eq:MC_estimator}
-\hat{\vtheta}_{\text{M}} =  \frac{ \sum_{i=1}^S\tilde{ \vtheta}^{(i)} w(\tilde{\vtheta}^{(i)}, Y_T)}{\sum_{i=1}^S  w(\tilde{\vtheta}^{(i)}, Y_T) }, \quad \tilde{\vtheta}^{(i)} \sim g(\vtheta|Y_T).
+\begin{equation} 
+\hat{\boldsymbol{\theta}}\_{\text{M}} =  \frac{ \sum_{i=1}^S\tilde{ \boldsymbol{\theta}}^{(i)} w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T)}{\sum_{i=1}^S  w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T) }, \quad \tilde{\boldsymbol{\theta}}^{(i)} \sim g(\boldsymbol{\theta}|Y_T).
+\tag{5}
+\label{eq:MC_estimator}
 \end{equation}
 
 A few remarks are in place. 
 
-Since the importance density $g(\vtheta|Y_T)$ was chosen in order to resemble $p(\vtheta|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not happen and $g(\tilde{\vtheta}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this document. 
+Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this document. 
 
-We mentioned at the beginning of this section that we wish to draw $\vtheta$ from the conditional distribution $p(\vtheta|Y_T)$ instead of $p(\vtheta)$. Since $\vtheta_t = \mZ \valpha_t$, the distribution $p(\vtheta)$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\vtheta$; if we would draw $\vtheta$ from $p(\vtheta)$, then we would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\vtheta|Y_T)$ prevents this from happening.
+We mentioned at the beginning of this section that we wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \mZ \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if we would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then we would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
 
-The importance weights are based on the joint densities $p(\vtheta,Y_T)$ and $g(\vtheta,Y_T)$, which allow both the observation and the transition equation of the state space model to be nonlinear and non-Gaussian. If the transition equation of the original model is assumed to be linear Gaussian, then 
+The importance weights are based on the joint densities $p(\boldsymbol{\theta},Y_T)$ and $g(\boldsymbol{\theta},Y_T)$, which allow both the observation and the transition equation of the state space model to be nonlinear and non-Gaussian. If the transition equation of the original model is assumed to be linear Gaussian, then 
 \begin{equation*}
-\E (\vtheta) =  \E_g \left[\frac{\vtheta p(\vtheta,Y_T)}{g(\vtheta,Y_T)}\right] = \E_g \left[\frac{\vtheta p(Y_T|\vtheta)p(\vtheta)}{g(Y_T|\vtheta)g(\vtheta)}\right] = \E_g \left[\frac{\vtheta p(Y_T|\vtheta)}{g(Y_T|\vtheta)}\right] =\frac{\E_g \left[\vtheta w(Y_T|\vtheta) \right]}{\E_g \left[ w(Y_T|\vtheta) \right]} ,
+\text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})p(\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})g(\boldsymbol{\theta})}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})}\right] =\frac{\text{E}\_g \left[\boldsymbol{\theta} w(Y_T|\boldsymbol{\theta}) \right]}{\text{E}\_g \left[ w(Y_T|\boldsymbol{\theta}) \right]} ,
 \end{equation*}
 
-because the density distribution implied by the transition equation in the original model, $p(\vtheta)$, is actually linear Gaussian and therefore equal to $g(\vtheta)$. The importance weights now depend on the conditional distributions $p(Y_T|\vtheta)$ and $g(Y_T|\vtheta)$. This assumption again simplifies the analysis, and we will keep making it from this point onward (mainly because we can make it for the estimation of time-varying state correlations).
+because the density distribution implied by the transition equation in the original model, $p(\boldsymbol{\theta})$, is actually linear Gaussian and therefore equal to $g(\boldsymbol{\theta})$. The importance weights now depend on the conditional distributions $p(Y_T|\boldsymbol{\theta})$ and $g(Y_T|\boldsymbol{\theta})$. This assumption again simplifies the analysis, and I will keep making it from this point onward.
 
 
 
