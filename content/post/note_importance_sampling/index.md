@@ -182,20 +182,22 @@ for $t=1, \dots, T$. We can employ the Newton-Raphson algorithm in order to do i
 \boldsymbol{g}\_t^+ = \boldsymbol{g}\_t - \left[ \left. \ddot p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t} \right]^{-1} \left. \dot p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t},
 \end{equation*}
 
-for $t=1, \dots, T$, where $\dot p(\vtheta_t | \vy_t) = \frac{\partial \log p(\vtheta_t | \vy_t)}{\partial \vtheta_t}$ and $\ddot p(\vtheta_t | \vy_t) = \frac{\partial^2 \log p(\vtheta_t | \vy_t)}{\partial \vtheta_t \partial \vtheta_t'}$. 
+for $t=1, \dots, T$, where $\dot p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \frac{\partial \log p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t)}{\partial \boldsymbol{\theta}\_t}$ and $\ddot p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \frac{\partial^2 \log p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t)}{\partial \boldsymbol{\theta}\_t \partial \boldsymbol{\theta}\_t'}$. 
 
-If the transition equation of the state space model is linear Gaussian, it is possible to show that the Newton-Raphson updating step can be more efficiently computed (it takes less iterations than for the Newton-Raphson method), by applying the KFS to a linear Gaussian state space model with $\mH =\mA_t = - \left[ \left. \ddot p (\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \vg_t} \right]^{-1}$ and $ \vy_t=\vz_t = \vg_t + \mA_t \left. \dot p (\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \vg_t}$, for $t=1, \dots, T$. This state space model takes the form
-\begin{equation} \label{eq:ssm_approx}
+If the transition equation of the state space model is linear Gaussian, it is possible to show that the Newton-Raphson updating step can be more efficiently computed (it takes less iterations than for the Newton-Raphson method), by applying the KFS to a linear Gaussian state space model with $\boldsymbol{H} =\boldsymbol{A}\_t = - \left[ \left. \ddot p (\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t} \right]^{-1}$ and $ \boldsymbol{y}\_t=\boldsymbol{z}\_t = \boldsymbol{g}\_t + \boldsymbol{A}\_t \left. \dot p (\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t}$, for $t=1, \dots, T$. This state space model takes the form
+\begin{equation} 
 \begin{aligned}
-\vz_t &= \vtheta_t + \vvarepsilon_t, \quad \vvarepsilon_t \sim N (\vzeros, \mA_t) \\
-\vtheta_t &= \mZ \valpha_t \\
-\valpha_{t+1} &= \mT \valpha_t + \veta_t, \quad \veta_t \sim N (\vzeros, \mQ),
+\boldsymbol{z}\_t &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{A}\_t) \\
+\boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\
+\boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
 \end{aligned}
+\tag{4}
+\label{eq:ssm_approx}
 \end{equation}
 
-for $t=1, \dots, T$. Notice that the transition equation is the same as the one in \eqref{eq:normal_linear_ssm}. This shows the advantage of having nonlinearity and non-Gaussianity only in the observation equation. The advantage is not just in terms of efficiency but also on the use of the the first and second derivatives of the density $p (\vy_t|\vtheta_t)$ which is known, instead of $p (\vtheta_t|\vy_t)$, which is unknown.
+for $t=1, \dots, T$. Notice that the transition equation is the same as the one in \eqref{eq:normal_linear_ssm}. This shows the advantage of having nonlinearity and non-Gaussianity only in the observation equation. The advantage is not just in terms of efficiency but also on the use of the the first and second derivatives of the density $p (\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)$ which is known, instead of $p (\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, which is unknown.
 
-The algorithm stops once $\vg_t^+ = \vg_t$, for $t=1, \dots, T$. Remember that $\vg_t^+$ is an estimate for $\vtheta_t$, not $\valpha_t$.
+The algorithm stops once $\boldsymbol{g}\_t^+ = \boldsymbol{g}\_t$, for $t=1, \dots, T$. Remember that $\boldsymbol{g}\_t^+$ is an estimate for $\boldsymbol{\theta}\_t$, not $\boldsymbol{\alpha}\_t$.
 
 Later in this document it will become clearer why we can use the approximate linear Gaussian state space model \eqref{eq:ssm_approx} in order to estimate the signal vector.
 
