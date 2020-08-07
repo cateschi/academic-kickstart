@@ -251,7 +251,7 @@ I am grateful to Siem Jan Koopman for his guidance in exploring these methods, t
 
 ## References
 
-[^DurbinKoopman1997]: Durbin, J. and Koopman, S. J. (1997). _Monte Carlo Maximum Likelihood Estimation for Non-GaussianState Space Models_. Biometrika, 84(3):669–684.
+[^DurbinKoopman1997]: Durbin, J. and Koopman, S. J. (1997). _Monte Carlo Maximum Likelihood Estimation for Non-Gaussian State Space Models_. Biometrika, 84(3):669–684.
 
 [^durbinkoopman2012]: Durbin, J. and Koopman, S. J. (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
 
