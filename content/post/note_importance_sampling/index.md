@@ -304,10 +304,10 @@ with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y
 for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in section \ref{section:mode}. We are now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
 \begin{equation*}
 \begin{aligned}
-& \left. \frac{\partial \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \frac{\partial \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
-\implies & \left. \mC_t(\mC_t^{-1}\vb_t - \vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
-\implies & \vb_t - \mC_t \hat{\vtheta}_t = \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
-\implies & \vb_t  = \mC_t \hat{\vtheta}_t + \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} ,
+& \left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
+\implies & \left. \boldsymbol{C}\_t(\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t - \boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
+\implies & \boldsymbol{b}\_t - \boldsymbol{C}\_t \hat{\boldsymbol{\theta}}\_t = \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\
+\implies & \boldsymbol{b}\_t  = \boldsymbol{C}\_t \hat{\boldsymbol{\theta}}\_t + \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} ,
 \end{aligned}
 \end{equation*}
 
