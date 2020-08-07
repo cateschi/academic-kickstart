@@ -1,7 +1,7 @@
 +++
 abstract = ""
 
-authors = [" Franz Palm, Caterina Schiavoni, Stephan Smeekes and Jan van den Brakel"]
+authors = ["Siem Jan Koopman, Franz Palm, Caterina Schiavoni, Stephan Smeekes and Jan van den Brakel"]
 date = 2020-08-03T00:00:00
 # publication = "Working Paper"
 
