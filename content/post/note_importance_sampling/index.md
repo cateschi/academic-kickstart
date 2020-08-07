@@ -214,7 +214,7 @@ Importance sampling is an alternative and more accurate way for state estimation
 
 #### Monte Carlo integration
 
-Let $\boldsymbol{\theta}$ be a stochastic variable with its density $p(\boldsymbol{\theta})$. The expectation of $\boldsymbol{\theta}$ can be obtained as (Durbin and Koopman 2012, Chapter 11[^durbinkoopman2012]):
+Let $\boldsymbol{\theta}$ be a stochastic variable with its density $p(\boldsymbol{\theta})$. The expectation of $\boldsymbol{\theta}$ can be obtained as (Durbin and Koopman, 2012, Chapter 11[^durbinkoopman2012]):
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \mathcal{A}} \boldsymbol{\theta} p(\boldsymbol{\theta}) d \boldsymbol{\theta},
 \end{equation*}
