@@ -158,11 +158,13 @@ for $t=T, \dots, 1$, with $\boldsymbol{r}\_T= \boldsymbol{0}$, $\boldsymbol{N}\_
 
 Suppose now that either the observation or the transition equation (or both) of the state space model are nonlinear and non-Gaussian:
 
-\begin{equation} \label{eq:nonnormal_nonlinear_ssm}
+\begin{equation} 
 \begin{aligned}
 \boldsymbol{y}\_t &\sim p(\boldsymbol{y}\_t | \boldsymbol{\theta}\_t) \\\\\\
 \boldsymbol{\alpha}\_{t+1} &\sim p(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t),
 \end{aligned}
+\tag{4}
+\label{eq:nonnormal_nonlinear_ssm}
 \end{equation}
 
 for $t=1, \dots, T$, where $p$ indicates that the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
@@ -192,7 +194,7 @@ If the transition equation of the state space model is linear Gaussian, it is po
 \boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\\\\\
 \boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
 \end{aligned}
-\tag{4}
+\tag{5}
 \label{eq:ssm_approx}
 \end{equation}
 
@@ -206,7 +208,7 @@ Later in this note it will become clearer why we can use the approximate linear 
 
 ### Importance sampling
 
-Importance sampling is an alternative and more accurate way for state estimation than mode estimation, but it can make use of the latter method. Below I explain how it works.
+Importance sampling is an alternative and more accurate way for state estimation than mode estimation, but it may employ the latter method. Below I explain how it works.
 
 
 
@@ -247,7 +249,7 @@ where $w(\boldsymbol{\theta}, Y_T)=\frac{ p(\boldsymbol{\theta},Y_T)}{g(\boldsym
 and its Monte Carlo estimator is 
 \begin{equation} 
 \hat{\boldsymbol{\theta}}\_{\text{M}} =  \frac{ \sum_{i=1}^S\tilde{ \boldsymbol{\theta}}^{(i)} w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T)}{\sum_{i=1}^S  w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T) }, \quad \tilde{\boldsymbol{\theta}}^{(i)} \sim g(\boldsymbol{\theta}|Y_T).
-\tag{5}
+\tag{6}
 \label{eq:MC_estimator}
 \end{equation}
 
@@ -289,7 +291,7 @@ for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsym
 &= d_t + \boldsymbol{b}\_t ' \boldsymbol{\theta}\_t -  \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \\\\\\
 &= \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t),
 \end{aligned}
-\tag{6}
+\tag{7}
 \label{eq:logl_ystar}
 \end{equation}
 
@@ -323,7 +325,7 @@ for  $t=1, \dots, T$.
 for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. We therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
 \begin{equation} 
 \log g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t) = - \frac{\dim(\boldsymbol{z}\_t)}{2} \log (2 \pi) + \frac{1}{2} \log (\det\boldsymbol{A}\_t^{-1}) - \frac{1}{2}(\boldsymbol{z}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{A}\_t^{-1} (\boldsymbol{z}\_t - \boldsymbol{\theta}\_t),
-\tag{7}
+\tag{8}
 \label{eq:approx_logl}
 \end{equation}
 
