@@ -171,8 +171,7 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 
 ### Mode estimation
-
-Shephard and Pitt (1997)[^ShephardPitt1997] and Durbin and Koopman (1997)[^DurbinKoopman1997] argue that it is still possible estimate the signal vector by mode estimation, i.e. find
+Shephard and Pitt (1997)[^ShephardPitt1997] and Durbin and Koopman (1997)[^DurbinKoopman1997] argue that it is still possible estimate the signal vector of a nonlinear non-Gaussian model by mode estimation, i.e. find
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_t = \arg \max_{\boldsymbol{\theta}\_t} p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t),
 \end{equation*}
