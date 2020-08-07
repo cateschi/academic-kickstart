@@ -172,7 +172,7 @@ In this case it is not possible to employ the Kalman filter for likelihood evalu
 
 ### Mode estimation
 
-\cite{ShephardPitt1997} and \cite{DurbinKoopman1997} argue that we can still estimate the signal vector by mode estimation, i.e. find
+Shephard and Pitt (1997)[^ShephardPitt1997] and Durbin and Koopman (1997)[^DurbinKoopman1997] argue that it is still possible estimate the signal vector by mode estimation, i.e. find
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_t = \arg \max_{\boldsymbol{\theta}\_t} p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t),
 \end{equation*}
@@ -187,7 +187,7 @@ for $t=1, \dots, T$, where $\dot p(\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) =
 If the transition equation of the state space model is linear Gaussian, it is possible to show that the Newton-Raphson updating step can be more efficiently computed (it takes less iterations than for the Newton-Raphson method), by applying the KFS to a linear Gaussian state space model with $\boldsymbol{H} =\boldsymbol{A}\_t = - \left[ \left. \ddot p (\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t} \right]^{-1}$ and $ \boldsymbol{y}\_t=\boldsymbol{z}\_t = \boldsymbol{g}\_t + \boldsymbol{A}\_t \left. \dot p (\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \boldsymbol{g}\_t}$, for $t=1, \dots, T$. This state space model takes the form
 \begin{equation} 
 \begin{aligned}
-\boldsymbol{z}\_t &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{A}\_t) \\
+\boldsymbol{z}\_t &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{A}\_t) \\\\\\
 \boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\
 \boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
 \end{aligned}
@@ -199,7 +199,7 @@ for $t=1, \dots, T$. Notice that the transition equation is the same as the one 
 
 The algorithm stops once $\boldsymbol{g}\_t^+ = \boldsymbol{g}\_t$, for $t=1, \dots, T$. Remember that $\boldsymbol{g}\_t^+$ is an estimate for $\boldsymbol{\theta}\_t$, not $\boldsymbol{\alpha}\_t$.
 
-Later in this document it will become clearer why we can use the approximate linear Gaussian state space model \eqref{eq:ssm_approx} in order to estimate the signal vector.
+Later in this note it will become clearer why we can use the approximate linear Gaussian state space model \eqref{eq:ssm_approx} in order to estimate the signal vector.
 
 
 
@@ -251,4 +251,8 @@ I am grateful to Siem Jan Koopman for his guidance in exploring these methods, t
 
 ## References
 
-[^durbinkoopman2012]: J. Durbin and S. J. Koopman (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
+[^DurbinKoopman1997]: Durbin, J. and Koopman, S. J. (1997). _Monte Carlo Maximum Likelihood Estimation for Non-GaussianState Space Models_. Biometrika, 84(3):669–684.
+
+[^durbinkoopman2012]: Durbin, J. and Koopman, S. J. (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
+
+[^ShephardPitt1997]: Shephard, N. and Pitt, M. (1997). _Likelihood Analysis of Non-Gaussian Measurement Time Series_. Biometrika, 84(3):653–667.
