@@ -282,12 +282,12 @@ for $t=1, \dots, T$. If we consider the linear Gaussian state space model
 \end{aligned}
 \end{equation*}
 
-for $t=1, \dots, T$, with $\star{\boldsymbol{y}}\_t= \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t$, it is possible to show that $g(\vy_t|\vtheta_t) = g(\vy_t^{*}|\vtheta_t)$ for $t=1, \dots, T$:
+for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t$, it is possible to show that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)$ for $t=1, \dots, T$:
 \begin{equation} \label{eq:logl_ystar}
 \begin{aligned}
-\log g(\vy_t^{*}|\vtheta_t) &= - \frac{\dim(\vy_t^*)}{2} \log(2 \pi) + \frac{1}{2}\log (\det\mC_t)- \frac{1}{2}(\mC_t^{-1}\vb_t - \vtheta_t)' \mC_t (\mC_t^{-1}\vb_t - \vtheta_t) \\
-&= d_t + \vb_t'\vtheta_t -  \frac{1}{2} \vtheta_t' \mC_t \vtheta_t \\
-&= \log g(\vy_t|\vtheta_t),
+\log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) &= - \frac{\dim(\boldsymbol{y}\_t^* )}{2} \log(2 \pi) + \frac{1}{2}\log (\det \boldsymbol{C}\_t)- \frac{1}{2}( \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{C}\_t (\boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t - \boldsymbol{\theta}\_t) \\\\\\
+&= d_t + \boldsymbol{b}\_t ' \boldsymbol{\theta}\_t -  \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \\\\\\
+&= \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t),
 \end{aligned}
 \end{equation}
 
