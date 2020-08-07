@@ -26,7 +26,7 @@ tags: ""
 featured: false
 
 links:
-- name: Custom Link
+- name: ''
   url: ''
 url_pdf: ''
 url_code: ''
