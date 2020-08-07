@@ -188,7 +188,7 @@ If the transition equation of the state space model is linear Gaussian, it is po
 \begin{equation} 
 \begin{aligned}
 \boldsymbol{z}\_t &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{A}\_t) \\\\\\
-\boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\
+\boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\\\\\
 \boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
 \end{aligned}
 \tag{4}
