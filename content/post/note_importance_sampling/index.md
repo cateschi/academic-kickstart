@@ -226,7 +226,7 @@ which can be estimated by its Monte Carlo estimator
 
 It can be shown that $\hat{\boldsymbol{\theta}}\_{\text{M}}$ is an unbiased estimator of $\text{E} (\boldsymbol{\theta})$.
 
-In the case of the nonlinear non-Gaussian state space model, we wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$, which we do not know, but we can instead sample from a linear Gaussian distribution $g(\boldsymbol{\theta}|Y_T)$, which should resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible:
+In the case of the nonlinear non-Gaussian state space model, I wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$, which I do not know, but I can instead sample from a linear Gaussian distribution $g(\boldsymbol{\theta}|Y_T)$, which should resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible:
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \Theta} \frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)} g(\boldsymbol{\theta}|Y_T) d\boldsymbol{\theta} = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right],
 \end{equation*}
@@ -236,7 +236,7 @@ where the subscript $g$ in the expectation operator indicates that the expectati
 \hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{1}{S} \sum_{i=1}^S \frac{\tilde{\boldsymbol{\theta}}^{(i)} p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)}{g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)}, \quad \tilde{\boldsymbol{\theta}}^{(i)} \sim g(\boldsymbol{\theta}|Y_T).
 \end{equation*}
 
-In order to compute $\hat{\boldsymbol{\theta}}\_{\text{M}}$ based on the previous formula, we need to evaluate $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ for each draw of $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$. The problem is that we still do not have an analytical expression for $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$. We can apply the Bayesian rule in order to solve this issue:
+In order to compute $\hat{\boldsymbol{\theta}}\_{\text{M}}$ based on the previous formula, I need to evaluate $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ for each draw of $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$. The problem is that we still do not have an analytical expression for $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$. I can apply the Bayesian rule in order to solve this issue:
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} g(Y_T)p(\boldsymbol{\theta},Y_T)}{p(Y_T)g(\boldsymbol{\theta},Y_T)}\right] = \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\frac{\boldsymbol{\theta}\ p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] =  \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\boldsymbol{\theta} w(\boldsymbol{\theta}, Y_T) \right],
 \end{equation*}
