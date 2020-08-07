@@ -166,6 +166,7 @@ Suppose now that either the observation or the transition equation (or both) of 
 \end{equation}
 
 for $t=1, \dots, T$, where $p$ indicates that the distribution is either nonlinear or non-Gaussian ($p$ need not be the same in the observation and transition equation).
+
 In this case it is not possible to employ the Kalman filter for likelihood evaluation and state estimation. Specifically, in case of nonlinearity it is not possible to apply the usual Kalman filter; in case of linearity and non-Gaussianity in the observation equation, it is possible to apply the usual Kalman filter if a density that belongs to the family of exponential distributions is assumed. The Kalman filter would then still be the best _linear_ unbiased estimator, and one can rely on quasi maximum likelihood results for the estimation of the parameters.
 
 
@@ -211,7 +212,7 @@ Importance sampling is an alternative and more accurate way for state estimation
 
 #### Monte Carlo integration
 
-Let $\boldsymbol{\theta}$ be a stochastic variable with its density $p(\boldsymbol{\theta})$. The expectation of $\boldsymbol{\theta}$ can be obtained as \citep[Chapter 11]{durbinkoopman2012}:
+Let $\boldsymbol{\theta}$ be a stochastic variable with its density $p(\boldsymbol{\theta})$. The expectation of $\boldsymbol{\theta}$ can be obtained as in Durbin and Koopman (2012), Chapter 11[^durbinkoopman2012]:
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \mathcal{A}} \boldsymbol{\theta} p(\boldsymbol{\theta}) d \boldsymbol{\theta},
 \end{equation*}
@@ -250,11 +251,9 @@ and its Monte Carlo estimator is
 \label{eq:MC_estimator}
 \end{equation}
 
-A few remarks are in place. 
+A few remarks are in place. Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this note. 
 
-Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this document. 
-
-We mentioned at the beginning of this section that we wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if we would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then we would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
+I mentioned at the beginning of this section that I wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if I would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then I would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
 
 The importance weights are based on the joint densities $p(\boldsymbol{\theta},Y_T)$ and $g(\boldsymbol{\theta},Y_T)$, which allow both the observation and the transition equation of the state space model to be nonlinear and non-Gaussian. If the transition equation of the original model is assumed to be linear Gaussian, then 
 \begin{equation*}
