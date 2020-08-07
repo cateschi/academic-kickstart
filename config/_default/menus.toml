@@ -10,7 +10,7 @@
 
 [[main]]
   name = "Research"
-  url = "#research"
+  url = "#publications"
   weight = 20
 
 [[main]]
@@ -25,7 +25,7 @@
 
 [[main]]
   name = "Blog"
-  url = "#blog"
+  url = "#posts"
   weight = 40
 
 # Link to a PDF of your resume/CV from the menu.
