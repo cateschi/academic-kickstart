@@ -1,5 +1,5 @@
 ---
-title: "An example preprint / working paper"
+title: "Estiamtion of time-varying state correlation in state space models"
 authors:
 - admin
 date: "2019-04-07T00:00:00Z"
