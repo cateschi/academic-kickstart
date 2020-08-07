@@ -295,7 +295,7 @@ for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsym
 \label{eq:logl_ystar}
 \end{equation}
 
-with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y}\_t^* ) \log(2 \pi) - \boldsymbol{b}\_t'\boldsymbol{y}\_t^* \right)$, and $\dim(\boldsymbol{y}\_t^* )$ equal to the dimension of the vector $\boldsymbol{y}\_t^* $. We now have to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ (and therefore $d_t$) such that:
+with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y}\_t^* ) \log(2 \pi) - \boldsymbol{b}\_t'\boldsymbol{y}\_t^* \right)$, and $\dim(\boldsymbol{y}\_t^* )$ equal to the dimension of the vector $\boldsymbol{y}\_t^* $. I now have to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ (and therefore $d_t$) such that:
 \begin{equation*}
 \begin{aligned}
 \left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} &= \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
