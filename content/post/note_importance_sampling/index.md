@@ -283,23 +283,25 @@ for $t=1, \dots, T$. If we consider the linear Gaussian state space model
 \end{equation*}
 
 for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t$, it is possible to show that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)$ for $t=1, \dots, T$:
-\begin{equation} \label{eq:logl_ystar}
+\begin{equation} 
 \begin{aligned}
 \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) &= - \frac{\dim(\boldsymbol{y}\_t^* )}{2} \log(2 \pi) + \frac{1}{2}\log (\det \boldsymbol{C}\_t)- \frac{1}{2}( \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{C}\_t (\boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t - \boldsymbol{\theta}\_t) \\\\\\
 &= d_t + \boldsymbol{b}\_t ' \boldsymbol{\theta}\_t -  \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \\\\\\
 &= \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t),
 \end{aligned}
+\tag{6}
+\label{eq:logl_ystar}
 \end{equation}
 
-with $d_t = \frac{1}{2}\left( \log (\det\mC_t) - \dim(\vy_t^*) \log(2 \pi) - \vb_t'\vy_t^* \right)$, and $\dim(\vy_t^*)$ equal to the dimension of the vector $\vy_t^*$. We now have to choose $\vb_t$ and $\mC_t$ (and therefore $d_t$) such that:
+with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y}\_t^* ) \log(2 \pi) - \boldsymbol{b}\_t'\boldsymbol{y}\_t^* \right)$, and $\dim(\boldsymbol{y}\_t^* )$ equal to the dimension of the vector $\boldsymbol{y}\_t^* $. We now have to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ (and therefore $d_t$) such that:
 \begin{equation*}
 \begin{aligned}
-\left. \frac{\partial \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} &= \left. \frac{\partial \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
-\left. \frac{\partial^2 \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t} &= \left. \frac{\partial^2 \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t},
+\left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} &= \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
+\left. \frac{\partial^2 \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t \partial \boldsymbol{\theta}\_t'} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} &= \left. \frac{\partial^2 \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t \partial \boldsymbol{\theta}\_t'} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t},
 \end{aligned}
 \end{equation*}
 
-for $t=1, \dots, T$, where $\hat{\vtheta}_t$ is the mode of $\log p(\vtheta_t|\vy_t)$ calculated as described in section \ref{section:mode}. We are now making sure that $g(Y_T|\vtheta)$ resembles $p(Y_T|\vtheta)$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\vb_t$ and $\mC_t$:
+for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in section \ref{section:mode}. We are now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
 \begin{equation*}
 \begin{aligned}
 & \left. \frac{\partial \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \frac{\partial \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
