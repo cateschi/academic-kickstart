@@ -1,12 +1,12 @@
 ---
-title: "Estiamtion of time-varying state correlation in state space models"
+title: "Estimation of time-varying state correlation in state space models"
 authors:
 - admin
-date: "2019-04-07T00:00:00Z"
+date: "2020-08-03T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2017-01-01T00:00:00Z"
+publishDate: ""
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
