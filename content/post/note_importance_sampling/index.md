@@ -266,6 +266,67 @@ because the density distribution implied by the transition equation in the origi
 
 #### Choice of the importance density
 
+As already mentioned, in order to compute the Monte Carlo estimator \eqref{eq:MC_estimator}, I need to evaluate $p(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$ and $g(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$, for $i=1, \dots, S$. I know the analytical expression for $p(Y_T|\boldsymbol{\theta})$ but not for $g(Y_T|\boldsymbol{\theta})$ yet. I also mentioned that $g(Y_T|\boldsymbol{\theta})$ should resemble $p(Y_T|\boldsymbol{\theta})$ as much as possible.
+
+Since $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)$ is Gaussian, it can take the general expression
+\begin{equation*}
+g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = \exp \left( d_t + \boldsymbol{b}\_t' \boldsymbol{\theta}\_t - \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \right)
+\end{equation*}
+
+for $t=1, \dots, T$. If we consider the linear Gaussian state space model
+\begin{equation*}
+\begin{aligned}
+\boldsymbol{y}\_t^* &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{C}\_t^{-1}) \\\\\\
+\boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\\\\\
+\boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
+\end{aligned}
+\end{equation*}
+
+for $t=1, \dots, T$, with $\star{\boldsymbol{y}}\_t= \boldsymbol{C}\_t^{-1} \boldsymbol{b}\_t$, it is possible to show that $g(\vy_t|\vtheta_t) = g(\vy_t^{*}|\vtheta_t)$ for $t=1, \dots, T$:
+\begin{equation} \label{eq:logl_ystar}
+\begin{aligned}
+\log g(\vy_t^{*}|\vtheta_t) &= - \frac{\dim(\vy_t^*)}{2} \log(2 \pi) + \frac{1}{2}\log (\det\mC_t)- \frac{1}{2}(\mC_t^{-1}\vb_t - \vtheta_t)' \mC_t (\mC_t^{-1}\vb_t - \vtheta_t) \\
+&= d_t + \vb_t'\vtheta_t -  \frac{1}{2} \vtheta_t' \mC_t \vtheta_t \\
+&= \log g(\vy_t|\vtheta_t),
+\end{aligned}
+\end{equation}
+
+with $d_t = \frac{1}{2}\left( \log (\det\mC_t) - \dim(\vy_t^*) \log(2 \pi) - \vb_t'\vy_t^* \right)$, and $\dim(\vy_t^*)$ equal to the dimension of the vector $\vy_t^*$. We now have to choose $\vb_t$ and $\mC_t$ (and therefore $d_t$) such that:
+\begin{equation*}
+\begin{aligned}
+\left. \frac{\partial \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} &= \left. \frac{\partial \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\left. \frac{\partial^2 \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t} &= \left. \frac{\partial^2 \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t},
+\end{aligned}
+\end{equation*}
+
+for $t=1, \dots, T$, where $\hat{\vtheta}_t$ is the mode of $\log p(\vtheta_t|\vy_t)$ calculated as described in section \ref{section:mode}. We are now making sure that $g(Y_T|\vtheta)$ resembles $p(Y_T|\vtheta)$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\vb_t$ and $\mC_t$:
+\begin{equation*}
+\begin{aligned}
+& \left. \frac{\partial \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \frac{\partial \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\implies & \left. \mC_t(\mC_t^{-1}\vb_t - \vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\implies & \vb_t - \mC_t \hat{\vtheta}_t = \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\implies & \vb_t  = \mC_t \hat{\vtheta}_t + \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} ,
+\end{aligned}
+\end{equation*}
+
+for  $t=1, \dots, T$.
+\begin{equation*}
+\begin{aligned}
+& \left. \frac{\partial^2 \log g(\vy_t^{*}|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \left. \frac{\partial^2 \log p(\vy_t|\vtheta_t)}{\partial \vtheta_t \partial \vtheta_t'} \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\implies & - \mC_t = \left. \ddot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\implies & \mC_t = - \left. \ddot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} \\
+\end{aligned}
+\end{equation*}
+
+for  $t=1, \dots, T$. Notice that $\mC_t = \mA_t^{-1}$, with $\mA_t$ defined in section \ref{section:mode} and evaluated at the mode $\hat{\vtheta}_t$, and $\mC_t^{-1}\vb_t =\hat{\vtheta}_t  + \mC_t^{-1} \left. \dot{p}(\vy_t|\vtheta_t) \right\vert_{\vtheta_t = \hat{\vtheta}_t} = \vz_t$, with $\vz_t$ also defined in section \ref{section:mode} and evaluated at the mode $\hat{\vtheta}_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\vtheta}_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. We therefore conclude that $g(\vy_t|\vtheta_t) = g(\vy_t^*|\vtheta_t) =g(\vz_t|\vtheta_t)$, with
+\begin{equation} \label{eq:approx_logl}
+\log g(\vz_t|\vtheta_t) = - \frac{\dim(\vz_t)}{2} \log (2 \pi) + \frac{1}{2} \log (\det\mA_t^{-1}) - \frac{1}{2}(\vz_t - \vtheta_t)' \mA_t^{-1} (\vz_t - \vtheta_t),
+\end{equation}
+
+for  $t=1, \dots, T$, which can be used in order to evaluate the importance weights.
+
+The method described above to choose $\mC_t$ and $\vb_t$, which is based on mode estimation, is called SPDK in the literature (after \cite{ShephardPitt1997} and \cite{DurbinKoopman1997}).
+
 
 
 #### Simulation smoothing
