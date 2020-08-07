@@ -253,7 +253,7 @@ and its Monte Carlo estimator is
 \label{eq:MC_estimator}
 \end{equation}
 
-A few remarks are in place. Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this note. 
+A few remarks are in place. Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not always happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this note. 
 
 I mentioned at the beginning of this section that I wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if I would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then I would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
 
