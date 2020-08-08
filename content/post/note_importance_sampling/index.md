@@ -399,7 +399,7 @@ In practice we evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[
 
 It is numerically more stable to maximize the log-likelihood
 \begin{equation} 
-\log \hat{p}(Y_T; \boldsymbol{\beta}) = \log g(Y_T; \boldsymbol{\beta}) + \log \left[ \frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\tehta}}^{(i)}; \boldsymbol{\beta}) \right] =  \log g(Y_T; \boldsymbol{\beta})+ \log \bar{w}.
+\log \hat{p}(Y_T; \boldsymbol{\beta}) = \log g(Y_T; \boldsymbol{\beta}) + \log \left[ \frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)}; \boldsymbol{\beta}) \right] =  \log g(Y_T; \boldsymbol{\beta})+ \log \bar{w}.
 \tag{11}
 \label{eq:logl_y_imp}
 \end{equation}
@@ -413,7 +413,7 @@ To start the maximization, an initial value for $\boldsymbol{\beta}$ can be obta
 \label{eq:logl_y_imp_approx}
 \end{equation}
 
-where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\hat{\boldsymbol{\theta}}|Y_T)$.
+where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\boldsymbol{\theta}|Y_T)$.
 
 
 
