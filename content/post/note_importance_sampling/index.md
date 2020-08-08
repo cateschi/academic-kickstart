@@ -385,7 +385,7 @@ for $t=1, \dots, T$, and with $\boldsymbol{B}\_t^* $ and $\boldsymbol{b}\_t^{(i)
 
 So far I have implicitly assumed that the matrices $\boldsymbol{Z}, \boldsymbol{T}$, $\boldsymbol{H}$, and $\boldsymbol{Q}$ were known. In practice, they may depend on parameters that need to be estimated by maximum likelihood. Let me define with $\boldsymbol{\beta}$ the vector that contains these parameters.
 
-The expression for the likelihood of the nonlinear non-Gaussian model \eqref{eq:nonnormal_nonlinear_ssm}, I expressed in the "Monte Carlo integartion" section as
+The likelihood of the nonlinear non-Gaussian model \eqref{eq:nonnormal_nonlinear_ssm} was expressed in the "Monte Carlo integartion" section as
 \begin{equation*}
 p(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\text{E}[w(Y_T|\boldsymbol{\theta}; \boldsymbol{\beta})],
 \end{equation*}
