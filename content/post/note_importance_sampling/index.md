@@ -455,7 +455,7 @@ If the state space model has a linear and a nonlinear part, then the importance 
 
 ## Acknowledgments
 
-I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
+I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own. Comments and suggestions are welcome.
 
 
 
