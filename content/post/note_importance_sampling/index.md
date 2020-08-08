@@ -392,7 +392,7 @@ p(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\text{E}[w(Y_T|\boldsymbo
 
 where $g(Y_T)$ is the likelihood of the linear Gaussian approximating model \eqref{eq:ssm_approx}. 
 
-In practice we evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[^durbinkoopman2012]:
+In practice I evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[^durbinkoopman2012]:
 \begin{equation*}
 \hat{p}(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)};\boldsymbol{\beta}).
 \end{equation*}
