@@ -135,8 +135,6 @@ where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\bo
 \boldsymbol{a}\_{t+1} &= \boldsymbol{T} \boldsymbol{a}\_t + \boldsymbol{K}\_t \boldsymbol{v}\_t \\\\\\
 \boldsymbol{P}\_{t+1} &= \boldsymbol{T} \boldsymbol{P}\_t \left( \boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)' + \boldsymbol{Q},
 \end{aligned}
-\tag{4}
-\label{eq:KF}
 \end{equation}
 
 for $t = 1, \dots, T$. The $m \times 1$ vector $\boldsymbol{a}\_{t|t}$ is the filter estimate of the state vector $\boldsymbol{\alpha}\_t$, and $\boldsymbol{P}\_{t|t}$ is the respective covariance matrix. 
