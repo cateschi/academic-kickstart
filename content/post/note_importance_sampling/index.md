@@ -125,7 +125,7 @@ The parameters of the linear Gaussian state space model \eqref{eq:normal_linear_
 
 where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\boldsymbol{F}\_t$ are obtained via the Kalman filter recursions
 
-\begin{equation*}
+\begin{equation}
 \begin{aligned}
 \boldsymbol{v}\_t &= \boldsymbol{y}\_t - \boldsymbol{Z} \boldsymbol{a}\_t \\\\\\
 \boldsymbol{F}\_t &= \boldsymbol{Z} \boldsymbol{P}\_t \boldsymbol{Z}' + \boldsymbol{H} \\\\\\
@@ -135,7 +135,9 @@ where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\bo
 \boldsymbol{a}\_{t+1} &= \boldsymbol{T} \boldsymbol{a}\_t + \boldsymbol{K}\_t \boldsymbol{v}\_t \\\\\\
 \boldsymbol{P}\_{t+1} &= \boldsymbol{T} \boldsymbol{P}\_t \left( \boldsymbol{T} - \boldsymbol{K}\_t \boldsymbol{Z} \right)' + \boldsymbol{Q},
 \end{aligned}
-\end{equation*}
+\tag{4}
+\label{eq:KF}
+\end{equation}
 
 for $t = 1, \dots, T$. The $m \times 1$ vector $\boldsymbol{a}\_{t|t}$ is the filter estimate of the state vector $\boldsymbol{\alpha}\_t$, and $\boldsymbol{P}\_{t|t}$ is the respective covariance matrix. 
 
@@ -163,7 +165,7 @@ Suppose now that either the observation or the transition equation (or both) of 
 \boldsymbol{y}\_t &\sim p(\boldsymbol{y}\_t | \boldsymbol{\theta}\_t) \\\\\\
 \boldsymbol{\alpha}\_{t+1} &\sim p(\boldsymbol{\alpha}\_{t+1} | \boldsymbol{\alpha}\_t),
 \end{aligned}
-\tag{4}
+\tag{5}
 \label{eq:nonnormal_nonlinear_ssm}
 \end{equation}
 
@@ -194,7 +196,7 @@ If the transition equation of the state space model is linear Gaussian, it is po
 \boldsymbol{\theta}\_t &= \boldsymbol{Z} \boldsymbol{\alpha}\_t \\\\\\
 \boldsymbol{\alpha}\_{t+1} &= \boldsymbol{T} \boldsymbol{\alpha}\_t + \boldsymbol{\eta}\_t, \quad \boldsymbol{\eta}\_t \sim N (\boldsymbol{0}, \boldsymbol{Q}),
 \end{aligned}
-\tag{5}
+\tag{6}
 \label{eq:ssm_approx}
 \end{equation}
 
@@ -249,7 +251,7 @@ where $w(\boldsymbol{\theta}, Y_T)=\frac{ p(\boldsymbol{\theta},Y_T)}{g(\boldsym
 and its Monte Carlo estimator is 
 \begin{equation} 
 \hat{\boldsymbol{\theta}}\_{\text{M}} =  \frac{ \sum_{i=1}^S\tilde{ \boldsymbol{\theta}}^{(i)} w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T)}{\sum_{i=1}^S  w(\tilde{\boldsymbol{\theta}}^{(i)}, Y_T) }, \quad \tilde{\boldsymbol{\theta}}^{(i)} \sim g(\boldsymbol{\theta}|Y_T).
-\tag{6}
+\tag{7}
 \label{eq:MC_estimator}
 \end{equation}
 
@@ -291,7 +293,7 @@ for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsym
 &= d_t + \boldsymbol{b}\_t ' \boldsymbol{\theta}\_t -  \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \\\\\\
 &= \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t),
 \end{aligned}
-\tag{7}
+\tag{8}
 \label{eq:logl_ystar}
 \end{equation}
 
@@ -325,7 +327,7 @@ for  $t=1, \dots, T$.
 for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. I therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
 \begin{equation} 
 \log g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t) = - \frac{\dim(\boldsymbol{z}\_t)}{2} \log (2 \pi) + \frac{1}{2} \log (\det\boldsymbol{A}\_t^{-1}) - \frac{1}{2}(\boldsymbol{z}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{A}\_t^{-1} (\boldsymbol{z}\_t - \boldsymbol{\theta}\_t),
-\tag{8}
+\tag{9}
 \label{eq:approx_logl}
 \end{equation}
 
@@ -356,7 +358,7 @@ In the case of a nonlinear non-Gaussian state space model, I wish to draw sample
 
 For each draw $\tilde{\boldsymbol{\theta}}^{(i)}$, evaluate $g(Y_T | \tilde{\boldsymbol{\theta}}^{(i)}) = \prod_{t=1}^T g(\boldsymbol{z}\_t | \tilde{\boldsymbol{\theta}}\_t^{(i)})$, with $\boldsymbol{z}\_t | \tilde{\boldsymbol{\theta}}\_t^{(i)} \sim N(\tilde{\boldsymbol{\theta}}\_t^{(i)}, \boldsymbol{A}\_t)$, and $p(Y_T | \tilde{\boldsymbol{\theta}}^{(i)}) = \prod_{t=1}^T p(\boldsymbol{y}\_t | \tilde{\boldsymbol{\theta}}\_t^{(i)})$, in order to compute the importance weights.
 
-Notice that the algorithm above is not valid when $\boldsymbol{A}\_t$ is not positive definite, since it would not be possible to implement step 4(a). In this case Jungbacker and Koopman (2007)[^JungbackerKoopman2007] show that, as long as $\boldsymbol{A}\_t$ is invertible, the sample $\tilde{\boldsymbol{B}}\_t^{(i)}$ is generated by the following simulation smoothing recursions:
+Notice that the algorithm above is not valid when $\boldsymbol{A}\_t$ is not positive definite, since it would not be possible to implement step 4(a). In this case Jungbacker and Koopman (2007)[^JungbackerKoopman2007] show that, as long as $\boldsymbol{A}\_t$ is invertible, the sample $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ is generated by the following simulation smoothing recursions:
 \begin{equation} 
 \begin{aligned}
 \boldsymbol{B}\_t &= \boldsymbol{A}\_t^{-1} - \boldsymbol{F}\_t^{-1} - \boldsymbol{K}\_t' \boldsymbol{N}\_t \boldsymbol{K}\_t \\\\\\
@@ -366,7 +368,7 @@ Notice that the algorithm above is not valid when $\boldsymbol{A}\_t$ is not pos
 \boldsymbol{r}\_{t-1} &= \boldsymbol{Z}' \boldsymbol{A}\_t^{-1} \boldsymbol{u}\_t - \boldsymbol{R}\_t' \boldsymbol{w}\_t + \boldsymbol{T}' \boldsymbol{r}\_t \\\\\\
 \boldsymbol{N}\_{t-1} &= \boldsymbol{R}\_t' \boldsymbol{B}\_t \boldsymbol{R}\_t - \boldsymbol{Z}' \boldsymbol{A}\_t^{-1} \boldsymbol{Z} +\boldsymbol{T}'\boldsymbol{N}\_t \boldsymbol{T},
 \end{aligned}
-\tag{9}
+\tag{10}
 \label{eq:JK_smoothing}
 \end{equation}
 
