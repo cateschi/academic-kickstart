@@ -404,7 +404,7 @@ It is numerically more stable to maximize the log-likelihood
 \label{eq:logl_y_imp}
 \end{equation}
 
-$\log g(Y_T; \boldsymbol{\beta})$ takes expression \eqref{eq:logl_y}, and is evaluated via the Kalman filter recursions with the difference that $\boldsymbol{y}\_t=\boldsymbol{z}\_t$ and $\boldsymbol{H}=\boldsymbol{A}\_t$, for $t=1,\dots,T$. Notice that irrespectively of how the diffuse initializations are dealt with in step 2 of the simulation smoothing, they have to be dealt with as usual when applying the Kalaman filter to the approximate linear Gaussian model \eqref{eq:ssm_approx} and evaluating $\log g(Y_T; \boldsymbol{\beta})$. The maximization of $\hat{p}(Y_T; \boldsymbol{\beta})$ yields the maximum likelihood estimate of $\boldsymbol{\beta}$.
+$\log g(Y_T; \boldsymbol{\beta})$ takes expression \eqref{eq:logl_y}, and is evaluated via the Kalman filter recursions with the difference that $\boldsymbol{y}\_t=\boldsymbol{z}\_t$ and $\boldsymbol{H}=\boldsymbol{A}\_t$, for $t=1,\dots,T$. Notice that irrespectively of how the diffuse initializations are dealt with in step 2 of the simulation smoothing, they have to be dealt with as usual when applying the Kalaman filter to the approximate linear Gaussian model \eqref{eq:ssm_approx}, and evaluating $\log g(Y_T; \boldsymbol{\beta})$. The maximization of $\hat{p}(Y_T; \boldsymbol{\beta})$ yields the maximum likelihood estimate of $\boldsymbol{\beta}$.
 
 To start the maximization, an initial value for $\boldsymbol{\beta}$ can be obtained by maximizing the approximate log-likelihood
 \begin{equation} 
@@ -418,6 +418,37 @@ where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\boldsymbol{\theta}|Y_T
 
 
 #### Implementation remarks
+
+I mentioned in the "Monte Carlo integration" section that the denominator of the importance weights can in practice be so small to cause numerical problems. We here report a way to implement importance weights that are numerically more stable, suggested in Koopman et al. (2018)[^Koopmanetal2018]. Recall the expression for the importance weights for a draw $i$:
+\begin{equation*}
+\begin{aligned}
+w(Y_T|\boldsymbol{\theta}^{(i)}) &= \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}  \\\\\\
+&= \frac{\prod_{t=1}^T p(boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})}{\prod_{t=1}^T g(boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})} \\\\\\
+&= \frac{\exp(\sum_{t=1}^{T}\log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}))}{\exp(\sum_{t=1}^{T}\log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}))} \\\\\\
+&= \frac{p^{(i)}}{g^{(i)}} \\\\\\
+&= \frac{\exp(\log p^{(i)})}{\exp(\log g^{(i)})} \\\\\\
+&= \exp(\log p^{(i)} - \log g^{(i)}) \\\\\\
+&= \exp(m_i) \\\\\\
+&= \exp(m_i + \bar{m} - \bar{m}) \\\\\\
+&= \exp(\bar{m}) \exp(m_i - \bar{m}),
+\end{aligned}
+\end{equation*}
+
+where $m_i = \log p^{(i)} - \log g^{(i)}$ and $\bar{m} = \frac{1}{S} \sum_{i=1}^S m_i$. The Monte Carlo estimator of $\vtheta$ then becomes
+\begin{equation*}
+\hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{\sum_{i=1}^S \tilde{\boldsymbol{\theta}}^{(i)} \exp(m_i - \bar{m})}{\sum_{i=1}^S  \exp(m_i - \bar{m})}.
+\end{equation*}
+
+The log-likelihood \eqref{eq:logl_y_imp} becomes (I omit $\boldsymbol{\beta}$ in the formula for simplicity)
+\begin{equation*}
+\log \hat{p}(Y_T) = \log g(Y_T) + \bar{m} - \log S + \log \left( \sum_{i=1}^S \exp(m_i - \bar{m}) \right).
+\end{equation*}
+
+In practice I maximize the average log-likelihood function expressed above: $\log \hat{p}(Y_T)/T$. The log-likelihood \eqref{eq:logl_y_imp_approx} stays the same.
+
+The same random seed and number of draws $S$ need to be used when implementing simulation smoothing, if I am maximizing the log-likelihood.
+
+If the state space model has a linear and a nonlinear part, then the importance sampling can only be done for the nonlinear part of the model by conditioning on the state variables that are linear; I only have to simulate the part of $\boldsymbol{\theta}^{(i)}$ that is nonlinear, and keep constant the rest. 
 
 
 
@@ -452,5 +483,7 @@ I am grateful to Siem Jan Koopman for his guidance in exploring these methods, t
 [^durbinkoopman2012]: Durbin, J. and Koopman, S. J. (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
 
 [^JungbackerKoopman2007]: Jungbacker, B. and Koopman, S. J. (2007). _Monte Carlo Estimation for nonlinear non-Gaussian state space models_. Biometrika, 94(4):827–839.
+
+[^Koopmanetal2018]: Koopman, S. J., Lit, R., and Nguyen, T. M. (2018). _Modified efficient importance sampling for partially non-Gaussian state space models_. Statistica Neerlandica, 73(1):44–62.
 
 [^ShephardPitt1997]: Shephard, N. and Pitt, M. (1997). _Likelihood Analysis of Non-Gaussian Measurement Time Series_. Biometrika, 84(3):653–667.
