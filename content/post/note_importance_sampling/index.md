@@ -419,7 +419,7 @@ where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\boldsymbol{\theta}|Y_T
 
 #### Implementation remarks
 
-I mentioned in the "Monte Carlo integration" section that the denominator of the importance weights can in practice be so small to cause numerical problems. I here report a way to implement importance weights that are numerically more stable, suggested in Koopman et al. (2018)[^Koopmanetal2018]. Recall the expression for the importance weights for a draw $i$, $w(Y_T|\boldsymbol{\theta}^{(i)}) &= \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})} = \frac{p^{(i)}}{g^{(i)}}$. Then the Monte Carlo estimator of $\boldsymbol{\theta}$ becomes
+I mentioned in the "Monte Carlo integration" section that the denominator of the importance weights can in practice be so small to cause numerical problems. I here report a way to implement importance weights that are numerically more stable, suggested in Koopman et al. (2018)[^Koopmanetal2018]. Recall the expression for the importance weights for a draw $i$, $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})} = \frac{p^{(i)}}{g^{(i)}}$. Then the Monte Carlo estimator of $\boldsymbol{\theta}$ becomes
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{\sum_{i=1}^S \tilde{\boldsymbol{\theta}}^{(i)} \exp(m_i - \bar{m})}{\sum_{i=1}^S  \exp(m_i - \bar{m})}.
 \end{equation*}
