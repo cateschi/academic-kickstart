@@ -346,8 +346,8 @@ In the case of a nonlinear non-Gaussian state space model, I wish to draw sample
 1. Compute $\hat{\boldsymbol{\theta}}\_t = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ by mode estimation, i.e. using the (modified) Newton-Raphson method discussed in the "Mode estimation" section.
 2. Initialize $ \boldsymbol{\theta}\_1^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_1^+, \boldsymbol{\alpha}\_1^+  \sim  N(\boldsymbol{0}, \boldsymbol{P}\_1)$ (the diffuse elements of $\boldsymbol{P}\_1$ could be set equal to 0).
 3. Draw $\boldsymbol{\theta}\_t^+$ from $g(\boldsymbol{\theta}\_t)$, i.e. the (approximate) linear Gaussian model for $\boldsymbol{\theta}\_t$, by following the steps:
-    a. Draw $\boldsymbol{\theta}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{Q})$, for $t=1,\dots, T$.
-    b. Obtain recursively $\boldsymbol{\alpha}\_{t+1}^+ = \boldsymbol{T} \boldsymbol{\alpha}\_t^+ + \boldsymbol{\eta}\_t^+$, and $\boldsymbol{\theta}\_t^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_t^+$, for $t=1,\dots, T$.
+    1. Draw $\boldsymbol{\theta}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{Q})$, for $t=1,\dots, T$.
+    2. Obtain recursively $\boldsymbol{\alpha}\_{t+1}^+ = \boldsymbol{T} \boldsymbol{\alpha}\_t^+ + \boldsymbol{\eta}\_t^+$, and $\boldsymbol{\theta}\_t^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_t^+$, for $t=1,\dots, T$.
 4. Use $\boldsymbol{\theta}\_t^+$ to generate $\boldsymbol{y}\_t^+ \sim g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^+)$, i.e. the approximate linear Gaussian model for $\boldsymbol{y}\_t$, by following the steps:
     a. Draw $\boldsymbol{\varepsilon}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{A}\_t)$, for $t=1,\dots,T$, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$.
     b. Obtain recursively $\boldsymbol{y}\_t^+ = \boldsymbol{\theta}\_t^+ + \boldsymbol{\varepsilon}\_t^+$, for $t=1,\dots,T$.
