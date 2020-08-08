@@ -423,7 +423,7 @@ I mentioned in the "Monte Carlo integration" section that the denominator of the
 \begin{equation*}
 \begin{aligned}
 w(Y_T|\boldsymbol{\theta}^{(i)}) &= \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}  \\\\\\
-&= \frac{\prod_{t=1}^T p(boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})}{\prod_{t=1}^T g(boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})} \\\\\\
+&= \frac{\prod_{t=1}^T p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})}{\prod_{t=1}^T g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})} \\\\\\
 &= \frac{\exp(\sum_{t=1}^{T}\log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}))}{\exp(\sum_{t=1}^{T}\log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}))} \\\\\\
 &= \frac{p^{(i)}}{g^{(i)}} \\\\\\
 &= \frac{\exp(\log p^{(i)})}{\exp(\log g^{(i)})} \\\\\\
@@ -434,7 +434,7 @@ w(Y_T|\boldsymbol{\theta}^{(i)}) &= \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y
 \end{aligned}
 \end{equation*}
 
-where $m_i = \log p^{(i)} - \log g^{(i)}$ and $\bar{m} = \frac{1}{S} \sum_{i=1}^S m_i$. The Monte Carlo estimator of $\vtheta$ then becomes
+where $m_i = \log p^{(i)} - \log g^{(i)}$ and $\bar{m} = \frac{1}{S} \sum_{i=1}^S m_i$. The Monte Carlo estimator of $\boldsymbol{\theta}$ then becomes
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{\sum_{i=1}^S \tilde{\boldsymbol{\theta}}^{(i)} \exp(m_i - \bar{m})}{\sum_{i=1}^S  \exp(m_i - \bar{m})}.
 \end{equation*}
