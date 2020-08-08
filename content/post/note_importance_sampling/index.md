@@ -372,7 +372,7 @@ Notice that the algorithm above is not valid when $\boldsymbol{A}\_t$ is not pos
 \label{eq:JK_smoothing}
 \end{equation}
 
-for $t=T,\dots,1$, and with the initializations $\boldsymbol{r}\_T=\boldsymbol{0}$ and $\boldsymbol{N}\_T=\boldsymbol{0}$. The elements $\boldsymbol{F}\_t$ and $\boldsymbol{v}\_t$ come from the Kalman filter recursions \eqref{eq:KF}. The simulated $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$ is obtained as $\tilde{\boldsymbol{\theta}}^{(i)} = \hat{\boldsymbol{\theta}} + (\boldsymbol{u}\_1', \dots, \boldsymbol{u}\_T')'$. Moroever, in this case the log-likelihood of the approximating model takes the following form (instead of \eqref{eq:approx_logl}):
+for $t=T,\dots,1$, and with the initializations $\boldsymbol{r}\_T=\boldsymbol{0}$ and $\boldsymbol{N}\_T=\boldsymbol{0}$. The elements $\boldsymbol{F}\_t$ and $\boldsymbol{v}\_t$ come from the Kalman filter recursions \eqref{eq:KF}. The simulated $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$ is obtained as $\tilde{\boldsymbol{\theta}}^{(i)} = \hat{\boldsymbol{\theta}} + (\boldsymbol{u}\_1', \dots, \boldsymbol{u}\_T')' $. Moroever, in this case the log-likelihood of the approximating model takes the following form (instead of \eqref{eq:approx_logl}):
 \begin{equation*}
 \log g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t) = - \frac{\dim(\boldsymbol{v}\_t)}{2} \log (2 \pi) - \log(|(\det \boldsymbol{A}\_t)|) - \log(\det \boldsymbol{B}\_t^* ) - \frac{1}{2}\boldsymbol{b}\_t^{'(i)}\boldsymbol{b}\_t^{(i)},
 \end{equation*}
