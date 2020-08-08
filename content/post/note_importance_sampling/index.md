@@ -342,22 +342,21 @@ The only ingredient that I am now missing in order to evaluate the importance we
 I first discuss what simulation smoothing is for general multivariate normal distribution, and I will then extend it to the case of state space models. Suppose that I want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
 
 In the case of a nonlinear non-Gaussian state space model, I wish to draw samples from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ for $t=1,\dots,T$. \cite{DurbinKoopman2002} show that the simulation smoothing works as follows:
-\begin{enumerate}
-    \item Compute $\hat{\boldsymbol{\theta}}\_t = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ by mode estimation, i.e. using the (modified) Newton-Raphson method discussed in the "Mode estimation" section.
-    \item Initialize $ \boldsymbol{\theta}\_1^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_1^+, \boldsymbol{\alpha}\_1^+  \sim  N(\boldsymbol{0}, \boldsymbol{P}\_1)$ (the diffuse elements of $\boldsymbol{P}\_1$ could be set equal to 0).
-    \item Draw $\boldsymbol{\theta}\_t^+$ from $g(\boldsymbol{\theta}\_t)$, i.e. the (approximate) linear Gaussian model for $\boldsymbol{\theta}\_t$, by following the steps:
+
+1. Compute $\hat{\boldsymbol{\theta}}\_t = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ by mode estimation, i.e. using the (modified) Newton-Raphson method discussed in the "Mode estimation" section.
+2. Initialize $ \boldsymbol{\theta}\_1^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_1^+, \boldsymbol{\alpha}\_1^+  \sim  N(\boldsymbol{0}, \boldsymbol{P}\_1)$ (the diffuse elements of $\boldsymbol{P}\_1$ could be set equal to 0).
+3. Draw $\boldsymbol{\theta}\_t^+$ from $g(\boldsymbol{\theta}\_t)$, i.e. the (approximate) linear Gaussian model for $\boldsymbol{\theta}\_t$, by following the steps:
     \begin{enumerate}
         \item Draw $\boldsymbol{\theta}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{Q})$, for $t=1,\dots, T$.
         \item Obtain recursively $\boldsymbol{\alpha}\_{t+1}^+ = \boldsymbol{T} \boldsymbol{\alpha}\_t^+ + \boldsymbol{\eta}\_t^+$, and $\boldsymbol{\theta}\_t^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_t^+$, for $t=1,\dots, T$.
     \end{enumerate}
-    \item Use $\boldsymbol{\theta}\_t^+$ to generate $\boldsymbol{y}\_t^+ \sim g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^+)$, i.e. the approximate linear Gaussian model for $\boldsymbol{y}\_t$, by following the steps:
+4. Use $\boldsymbol{\theta}\_t^+$ to generate $\boldsymbol{y}\_t^+ \sim g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^+)$, i.e. the approximate linear Gaussian model for $\boldsymbol{y}\_t$, by following the steps:
     \begin{enumerate}
         \item Draw $\boldsymbol{\varepsilon}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{A}\_t)$, for $t=1,\dots,T$, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$.
         \item Obtain recursively $\boldsymbol{y}\_t^+ = \vtheta_t^+ + \boldsymbol{\varepsilon}\_t^+$, for $t=1,\dots,T$.
     \end{enumerate}
-    \item Compute $\hat{\boldsymbol{\theta}}\_t^+ = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t^+)$ by KFS applied to the approximate linear Gaussian model \eqref{eq:ssm_approx}, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and with $\boldsymbol{z}\_t = \boldsymbol{y}\_t^+$.
-    \item Compute $\tilde{\boldsymbol{\theta}}\_t = \hat{\boldsymbol{\theta}}\_t + \boldsymbol{\theta}\_t^+ - \hat{\boldsymbol{\theta}}\_t^+$; $\tilde{\boldsymbol{\theta}}\_t$ is a draw from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$.
-\end{enumerate}
+5. Compute $\hat{\boldsymbol{\theta}}\_t^+ = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t^+)$ by KFS applied to the approximate linear Gaussian model \eqref{eq:ssm_approx}, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and with $\boldsymbol{z}\_t = \boldsymbol{y}\_t^+$.
+6. Compute $\tilde{\boldsymbol{\theta}}\_t = \hat{\boldsymbol{\theta}}\_t + \boldsymbol{\theta}\_t^+ - \hat{\boldsymbol{\theta}}\_t^+$; $\tilde{\boldsymbol{\theta}}\_t$ is a draw from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$.
 
 For each draw $\tilde{\vtheta}^{(i)}$, we evaluate $g(Y_T | \tilde{\vtheta}^{(i)}) = \prod_{t=1}^T g(\vz_t | \tilde{\vtheta}_t^{(i)})$, with $\vz_t | \tilde{\vtheta}_t^{(i)} \sim N(\tilde{\vtheta}_t^{(i)}, \mA_t)$, and $p(Y_T | \tilde{\vtheta}^{(i)}) = \prod_{t=1}^T p(\vy_t | \tilde{\vtheta}_t^{(i)})$, in order to compute the importance weights.
 
