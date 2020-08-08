@@ -262,7 +262,7 @@ The importance weights are based on the joint densities $p(\boldsymbol{\theta},Y
 \text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})p(\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})g(\boldsymbol{\theta})}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})}\right] =\frac{\text{E}\_g \left[\boldsymbol{\theta} w(Y_T|\boldsymbol{\theta}) \right]}{\text{E}\_g \left[ w(Y_T|\boldsymbol{\theta}) \right]} ,
 \end{equation*}
 
-because the density distribution implied by the transition equation in the original model, $p(\boldsymbol{\theta})$, is actually linear Gaussian and therefore equal to $g(\boldsymbol{\theta})$. The importance weights now depend on the conditional distributions $p(Y_T|\boldsymbol{\theta})$ and $g(Y_T|\boldsymbol{\theta})$. This assumption again simplifies the analysis, and I will keep making it from this point onward.
+because the density distribution implied by the transition equation in the original model, $p(\boldsymbol{\theta})$, is actually linear Gaussian and therefore equal to $g(\boldsymbol{\theta})$. The importance weights now depend on the conditional distributions $p(Y_T|\boldsymbol{\theta})$ and $g(Y_T|\boldsymbol{\theta})$. This assumption again simplifies the analysis, and I will keep making it from this point onwards.
 
 
 
@@ -336,6 +336,49 @@ The method described above to choose $\boldsymbol{C}\_t$ and $\boldsymbol{b}\_t$
 
 
 #### Simulation smoothing
+
+The only ingredient that I am now missing in order to evaluate the importance weights, is the draw $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. I do not have an expression for $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, but I can still compute $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ by means of simulation smoothing.
+
+I first discuss what simulation smoothing is for general multivariate normal distribution, and I will then extend it to the case of state space models. Suppose that I want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
+
+In the case of a nonlinear non-Gaussian state space model, I wish to draw samples from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ for $t=1,\dots,T$. \cite{DurbinKoopman2002} show that the simulation smoothing works as follows:
+\begin{enumerate}
+    \item Compute $\hat{\boldsymbol{\theta}}\_t = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ by mode estimation, i.e. using the (modified) Newton-Raphson method discussed in the "Mode estimation" section.
+    \item Initialize $ \boldsymbol{\theta}\_1^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_1^+, \boldsymbol{\alpha}\_1^+  \sim  N(\boldsymbol{0}, \boldsymbol{P}\_1)$ (the diffuse elements of $\boldsymbol{P}\_1$ could be set equal to 0).
+    \item Draw $\boldsymbol{\theta}\_t^+$ from $g(\boldsymbol{\theta}\_t)$, i.e. the (approximate) linear Gaussian model for $\boldsymbol{\theta}\_t$, by following the steps:
+    \begin{enumerate}
+        \item Draw $\boldsymbol{\theta}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{Q})$, for $t=1,\dots, T$.
+        \item Obtain recursively $\boldsymbol{\alpha}\_{t+1}^+ = \boldsymbol{T} \boldsymbol{\alpha}\_t^+ + \boldsymbol{\eta}\_t^+$, and $\boldsymbol{\theta}\_t^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_t^+$, for $t=1,\dots, T$.
+    \end{enumerate}
+    \item Use $\boldsymbol{\theta}\_t^+$ to generate $\boldsymbol{y}\_t^+ \sim g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^+)$, i.e. the approximate linear Gaussian model for $\boldsymbol{y}\_t$, by following the steps:
+    \begin{enumerate}
+        \item Draw $\boldsymbol{\varepsilon}\_t^+ \sim N(\boldsymbol{0}, \boldsymbol{A}\_t)$, for $t=1,\dots,T$, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$.
+        \item Obtain recursively $\boldsymbol{y}\_t^+ = \vtheta_t^+ + \boldsymbol{\varepsilon}\_t^+$, for $t=1,\dots,T$.
+    \end{enumerate}
+    \item Compute $\hat{\boldsymbol{\theta}}\_t^+ = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t^+)$ by KFS applied to the approximate linear Gaussian model \eqref{eq:ssm_approx}, with $\boldsymbol{A}\_t$ evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and with $\boldsymbol{z}\_t = \boldsymbol{y}\_t^+$.
+    \item Compute $\tilde{\boldsymbol{\theta}}\_t = \hat{\boldsymbol{\theta}}\_t + \boldsymbol{\theta}\_t^+ - \hat{\boldsymbol{\theta}}\_t^+$; $\tilde{\boldsymbol{\theta}}\_t$ is a draw from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$.
+\end{enumerate}
+
+For each draw $\tilde{\vtheta}^{(i)}$, we evaluate $g(Y_T | \tilde{\vtheta}^{(i)}) = \prod_{t=1}^T g(\vz_t | \tilde{\vtheta}_t^{(i)})$, with $\vz_t | \tilde{\vtheta}_t^{(i)} \sim N(\tilde{\vtheta}_t^{(i)}, \mA_t)$, and $p(Y_T | \tilde{\vtheta}^{(i)}) = \prod_{t=1}^T p(\vy_t | \tilde{\vtheta}_t^{(i)})$, in order to compute the importance weights.
+
+Notice that the algorithm above is not valid when $\mA_t$ is not positive definite, since it would not be possible to implement step 4(a). In this case \cite{JungbackerKoopman2007} show that, as long as $\mA_t$ is invertible, the sample $\tilde{\vtheta}_t^{(i)}$ is generated by the following simulation smoothing recursions:
+\begin{equation} \label{eq:JK_smoothing}
+\begin{aligned}
+\mB_t &= \mA_t^{-1} - \mF_t^{-1} - \mK'_t \mN_t \mK_t \\
+\mR_t &= \mB_t^{-1} (\mA_t^{-1}\mZ -\mK'_t \mN_t \mT ) \\
+\vw_t &\sim N(\vzeros, \mB_t) \\
+\vu_t &= \mA_t(\vw_t + \mF_t^{-1}\vv_t - \mK'_t\vr_t) \\
+\vr_{t-1} &= \mZ' \mA_t^{-1} \vu_t - \mR'_t \vw_t + \mT'\vr_t \\
+\mN_{t-1} &= \mR'_t \mB_t \mR_t - \mZ' \mA_t^{-1} \mZ +\mT'\mN_t\mT,
+\end{aligned}
+\end{equation}
+
+for $t=T,\dots,1$, and with the initializations $\vr_T=\vzeros$ and $\mN_T=\vzeros$. The elements $\mF_t$ and $\vv_t$ come from the Kalman filter recursions \eqref{eq:KF}. The simulated $\tilde{\vtheta}^{(i)}$ from $g(\vtheta|Y_T)$ is obtained as $\tilde{\vtheta}^{(i)} = \hat{\vtheta} + (\vu'_1, \dots, \vu'_T)'$. Moroever, in this case the log-likelihood of the approximating model takes the following form (instead of \eqref{eq:approx_logl}):
+\begin{equation*}
+\log g(\vz_t|\vtheta_t) = - \frac{\dim(\vz_t)}{2} \log (2 \pi) - \log(|(\det \mA_t)|) - \log(\det \mB_t^*) - \frac{1}{2}\vb_t^{'(i)}\vb_t^{(i)},
+\end{equation*}
+
+for $t=1, \dots, T$, and with $\mB_t^*$ and $\vb_t^{(i)}$ such that, respectively, $\mB_t^* = \mB_t \mB_t'$ and $\vw_t^{(i)} = \mB_t^* \vb_t^{(i)}$. This method assumes that $\mB_t$ is positive definite because it is needed in order to generate $\vw_t^{(i)}$, and this is guaranteed if $\vb_t$ and $\mA_t$ are evaluated at the mode estimate $\hat{\vtheta}_t$, for $t=1,\dots,T$ (which implies that these modified smoothing recursions can only be employed with the SPDK method).
 
 
 
