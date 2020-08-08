@@ -341,7 +341,7 @@ The method described above to choose $\boldsymbol{C}\_t$ and $\boldsymbol{b}\_t$
 
 The only ingredient that I am now missing in order to evaluate the importance weights, is the draw $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. I do not have an expression for $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, but I can still compute $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ by means of simulation smoothing.
 
-I first discuss what simulation smoothing is for general multivariate normal distribution, and I will then extend it to the case of state space models. Suppose that I want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
+I first discuss what simulation smoothing is for general multivariate normal distributions, and I will then extend it to the case of state space models. Suppose that I want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
 
 In the case of a nonlinear non-Gaussian state space model, I wish to draw samples from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ for $t=1,\dots,T$. Durbin and Koopman (2002)[^DurbinKoopman2002] show that the simulation smoothing works as follows:
 
@@ -382,6 +382,38 @@ for $t=1, \dots, T$, and with $\boldsymbol{B}\_t^* $ and $\boldsymbol{b}\_t^{(i)
 
 
 #### Evaluation and maximization of the log-likelihood
+
+So far I have implicitly assumed that the matrices $\boldsymbol{Z}, \boldsymbol{T}$, $\boldsymbol{H}$, and $\boldsymbol{Q}$ were known. In practice, they may depend on parameters that need to be estimated by maximum likelihood. Let me define $\boldsymbol{beta}$ the vector that contains these parameters.
+
+The expression for the likelihood of the nonlinear non-Gaussian model \eqref{eq:nonnormal_nonlinear_ssm}, I expressed in the "Monte Carlo integartion" section as
+\begin{equation*}
+p(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\text{E}[w(Y_T|\boldsymbol{\theta}; \boldsymbol{\beta})],
+\end{equation*}
+
+where $g(Y_T)$ is the likelihood of the linear Gaussian approximating model \eqref{eq:ssm_approx}. 
+
+In practice we evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[^durbinkoopman2012]:
+\begin{equation*}
+\hat{p}(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)};\boldsymbol{\beta}).
+\end{equation*}
+
+It is numerically more stable to maximize the log-likelihood
+\begin{equation} 
+\log \hat{p}(Y_T; \boldsymbol{\beta}) = \log g(Y_T; \boldsymbol{\beta}) + \log \left[ \frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\tehta}}^{(i)}; \boldsymbol{\beta}) \right] =  \log g(Y_T; \boldsymbol{\beta})+ \log \bar{w}.
+\tag{11}
+\label{eq:logl_y_imp}
+\end{equation}
+
+$\log g(Y_T; \boldsymbol{\beta})$ takes expression \eqref{eq:logl_y}, and is evaluated via the Kalman filter recursions with the difference that $\boldsymbol{y}\_t=\boldsymbol{z}\_t$ and $\boldsymbol{H}=\boldsymbol{A}\_t$, for $t=1,\dots,T$. Notice that irrespectively of how the diffuse initializations are dealt with in step 2 of the simulation smoothing, they have to be dealt with as usual when applying the Kalaman filter to the approximate linear Gaussian model \eqref{eq:ssm_approx} and evaluating $\log g(Y_T; \boldsymbol{\beta})$. The maximization of $\hat{p}(Y_T; \boldsymbol{\beta})$ yields the maximum likelihood estimate of $\boldsymbol{\beta}$.
+
+To start the maximization, an initial value for $\boldsymbol{\beta}$ can be obtained by maximizing the approximate log-likelihood
+\begin{equation} 
+\log \hat{p}(Y_T; \boldsymbol{\beta}) \approx \log g(Y_T; \boldsymbol{\beta}) + \log w(Y_T|\hat{\boldsymbol{\theta}}; \boldsymbol{\beta}),
+\tag{12}
+\label{eq:logl_y_imp_approx}
+\end{equation}
+
+where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\hat{\boldsymbol{\theta}}|Y_T)$.
 
 
 
