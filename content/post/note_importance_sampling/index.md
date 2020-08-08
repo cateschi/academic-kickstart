@@ -399,12 +399,12 @@ In practice I evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[^
 
 It is numerically more stable to maximize the log-likelihood
 \begin{equation} 
-\log \hat{p}(Y_T; \boldsymbol{\beta}) = \log g(Y_T; \boldsymbol{\beta}) + \log \left[ \frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)}; \boldsymbol{\beta}) \right] =  \log g(Y_T; \boldsymbol{\beta})+ \log \bar{w}.
+\log \hat{p}(Y_T; \boldsymbol{\beta}) = \log g(Y_T; \boldsymbol{\beta}) + \log \left[ \frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)}; \boldsymbol{\beta}) \right] =  \log g(Y_T; \boldsymbol{\beta})+ \log \bar{w},
 \tag{11}
 \label{eq:logl_y_imp}
 \end{equation}
 
-$\log g(Y_T; \boldsymbol{\beta})$ takes expression \eqref{eq:logl_y}, and is evaluated via the Kalman filter recursions with the difference that $\boldsymbol{y}\_t=\boldsymbol{z}\_t$ and $\boldsymbol{H}=\boldsymbol{A}\_t$, for $t=1,\dots,T$. Notice that irrespectively of how the diffuse initializations are dealt with in step 2 of the simulation smoothing, they have to be dealt with as usual when applying the Kalaman filter to the approximate linear Gaussian model \eqref{eq:ssm_approx}, and evaluating $\log g(Y_T; \boldsymbol{\beta})$. The maximization of $\hat{p}(Y_T; \boldsymbol{\beta})$ yields the maximum likelihood estimate of $\boldsymbol{\beta}$.
+where $\log g(Y_T; \boldsymbol{\beta})$ takes expression \eqref{eq:logl_y}, and is evaluated via the Kalman filter recursions with the difference that $\boldsymbol{y}\_t=\boldsymbol{z}\_t$ and $\boldsymbol{H}=\boldsymbol{A}\_t$, for $t=1,\dots,T$. Notice that irrespectively of how the diffuse initializations are dealt with in step 2 of the simulation smoothing, they have to be dealt with as usual when applying the Kalaman filter to the approximate linear Gaussian model \eqref{eq:ssm_approx}, and evaluating $\log g(Y_T; \boldsymbol{\beta})$. The maximization of $\hat{p}(Y_T; \boldsymbol{\beta})$ yields the maximum likelihood estimate of $\boldsymbol{\beta}$.
 
 To start the maximization, an initial value for $\boldsymbol{\beta}$ can be obtained by maximizing the approximate log-likelihood
 \begin{equation} 
