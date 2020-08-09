@@ -392,7 +392,7 @@ p(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\text{E}[w(Y_T|\boldsymbo
 
 where $g(Y_T)$ is the likelihood of the linear Gaussian approximating model \eqref{eq:ssm_approx}. 
 
-In practice I evaluate the likelihood as Durbin and Koopman (2012), Chapter 11[^durbinkoopman2012]:
+In practice I evaluate the likelihood as Durbin and Koopman (2012, Chapter 11)[^durbinkoopman2012]:
 \begin{equation*}
 \hat{p}(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)};\boldsymbol{\beta}).
 \end{equation*}
@@ -439,7 +439,7 @@ If the state space model has a linear and a nonlinear part, then the importance 
 
 ### Modified efficient importance sampling
 
-So far I discussed how importance sampling works when $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ in equation \eqref{eq:logl_ystar} are chosen by mode estimation. There are also other ways to chose these importance parameters. Remember that the choice of $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ is fundamental in order to get an expression for the approximate linear Gaussian state space model \eqref{eq:ssm_approx}. The modified efficient importance sampling (MEIS) method of Koopman et al. (2018)[^Koopmanetal2018] and Scharth (2012), Chapter 5[^Scharth2012], suggests to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ such that the criterion
+So far I discussed how importance sampling works when $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ in equation \eqref{eq:logl_ystar} are chosen by mode estimation. There are also other ways to chose these importance parameters. Remember that the choice of $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ is fundamental in order to get an expression for the approximate linear Gaussian state space model \eqref{eq:ssm_approx}. The modified efficient importance sampling (MEIS) method of Koopman et al. (2018)[^Koopmanetal2018] and Scharth (2012, Chapter 5)[^Scharth2012], suggests to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ such that the criterion
 \begin{equation*}
 I_t = \int \lambda^2(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) p(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) d \boldsymbol{\theta}\_t
 \end{equation*}
