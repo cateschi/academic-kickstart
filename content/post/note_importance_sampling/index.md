@@ -429,7 +429,7 @@ The log-likelihood \eqref{eq:logl_y_imp} becomes (I omit $\boldsymbol{\beta}$ in
 \log \hat{p}(Y_T) = \log g(Y_T) + \bar{m} - \log S + \log \left( \sum_{i=1}^S \exp(m_i - \bar{m}) \right).
 \end{equation*}
 
-In practice, maximize the average log-likelihood function expressed above: $\log \hat{p}(Y_T)/T$. The log-likelihood \eqref{eq:logl_y_imp_approx} stays the same.
+In practice, if the values of the log-lieklihood are too large, maximize the average log-likelihood function expressed above: $\log \hat{p}(Y_T)/T$. The log-likelihood \eqref{eq:logl_y_imp_approx} stays the same.
 
 The same random seed and number of draws $S$ need to be used when implementing simulation smoothing, if I am maximizing the log-likelihood.
 
@@ -438,6 +438,42 @@ If the state space model has a linear and a nonlinear part, then the importance 
 
 
 ### Modified efficient importance sampling
+
+So far I discussed how importance sampling works when $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ in equation \eqref{eq:logl_ystar} are chosen by mode estimation. There are also other ways to chose these importance parameters. Remember that the choice of $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ is fundamental in order to get an expression for the approximate linear Gaussian state space model \eqref{eq:ssm_approx}. The modified efficient importance sampling (MEIS) method of Koopman et al. (2018)[^Koopmanetal2018] and Scharth (2012), Chapter 5[^Scharth2012], suggests to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ such that the criterion
+\begin{equation*}
+I_t = \int \lambda^2(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) p(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) d \boldsymbol{\theta}\_t
+\end{equation*}
+
+is minimized for each $t$ separately, and where $\lambda(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) = \log w(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta})$. The criterion $I_t$ can be interpreted as the variance of the logged importance weight function with respect to $p(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}\_t)$. The variables $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ determine $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t; \boldsymbol{\beta})$ that is part of $w(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta})$ and hence of $\lambda(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta})$. The function $I_t$ cannot be evaluated analytically but it is possible to approximate it as
+\begin{equation*}
+I_t^* = \int \lambda^2(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) w(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t; \boldsymbol{\beta}) d \boldsymbol{\theta}\_t.
+\end{equation*}
+
+The evaluation and minimization of $I_t^* $ can be done via importance sampling, by minimzing
+\begin{equation*}
+I_t^* = \frac{1}{S} \sum_{i=1}^S \lambda^2(\boldsymbol{\theta}\_t^{(i)}, \boldsymbol{y}\_t ; \boldsymbol{\beta}) w(\boldsymbol{\theta}\_t^{(i)}, \boldsymbol{y}\_t ; \boldsymbol{\beta}), \quad \boldsymbol{\theta}\_t^{(i)} \sim g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t),
+\end{equation*}
+
+for $t=1, \dots, T$. It is possible to show that this minimization leads to the weighted least squares solution 
+\begin{equation*}
+(a_t, \boldsymbol{b}\_t', \vech (\boldsymbol{C}\_t^* )')' = (\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{X}\_t)^{-1}\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{e}\_t,
+\end{equation*}
+
+for $t=1, \dots, T$, with $\boldsymbol{e}\_t = (\log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(1)}; \boldsymbol{\beta}), \dots, \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(S)}; \boldsymbol{\beta}))$, $\boldsymbol{W}\_t$ a $S \times S$ diagonal matrix whose diagonal elements correspond to the importance weights $m_i$, $i=1, \dots, S$ (defined in the "Implementation remarks" section), and 
+\begin{equation*}
+\boldsymbol{X}\_t = \left[ \begin{array}{ccc} 
+1 & \boldsymbol{\theta}\_t^{(1)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(1)} \boldsymbol{\theta}\_t^{(1)'})' \\
+1 & \boldsymbol{\theta}\_t^{(2)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(2)} \boldsymbol{\theta}\_t^{(2)'})' \\
+\vdots & \vdots & \vdots \\
+1 & \boldsymbol{\theta}\_t^{(S)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(S)} \boldsymbol{\theta}\_t^{(S)'})'
+\end{array}    \right].
+\end{equation*}
+
+The matrix $\boldsymbol{C}\_t$ is retrieved by multiplying the off-diagonal elements of $\boldsymbol{C}\_t^* $ by 1/2.
+
+Notice that in the weighted least squares problem $S$ defines the "sample size". This also means that the simulation smoothing, which samples $\boldsymbol{\theta}^{(i)}$, is done prior to the weighted least squares estimation, for initial values of $\boldsymbol{A}\_t$ (for instance $\boldsymbol{A}\_t = \boldsymbol{I}$) and $\boldsymbol{z}\_t$ (for instance $\boldsymbol{z}\_t = \boldsymbol{0}$). The MEIS (simulation smoothing + weighted least square) is iterated until convergence (see \cite{Koopmanetal2018} for a choice of convergence criterion).
+
+Richard and Zhang (2007)[^RichardZhang2007] advise _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. They generally recommend against presetting a number S of EIS iterations. Instead, They prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
 
 
 
@@ -455,7 +491,7 @@ If the state space model has a linear and a nonlinear part, then the importance 
 
 ## Acknowledgments
 
-I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own. Comments and suggestions are welcome.
+I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
 
 
 
@@ -470,5 +506,9 @@ I am grateful to Siem Jan Koopman for his guidance in exploring these methods, t
 [^JungbackerKoopman2007]: Jungbacker, B. and Koopman, S. J. (2007). _Monte Carlo Estimation for nonlinear non-Gaussian state space models_. Biometrika, 94(4):827–839.
 
 [^Koopmanetal2018]: Koopman, S. J., Lit, R., and Nguyen, T. M. (2018). _Modified efficient importance sampling for partially non-Gaussian state space models_. Statistica Neerlandica, 73(1):44–62.
+
+[^RichardZhang2007]: Richard, J.-F. and Zhang, W. (2007). _Efficient High-dimensional Importance Sampling_. Journal of Econometrics, 141(2):1385–1411.
+
+[^Scharth2012]: Scharth, M. (2012). _Essays on Monte Carlo Methods for State Space Models_. PhD thesis, Vrije Universiteit Amsterdam.
 
 [^ShephardPitt1997]: Shephard, N. and Pitt, M. (1997). _Likelihood Analysis of Non-Gaussian Measurement Time Series_. Biometrika, 84(3):653–667.
