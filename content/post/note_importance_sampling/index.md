@@ -456,7 +456,7 @@ I_t^* = \frac{1}{S} \sum_{i=1}^S \lambda^2(\boldsymbol{\theta}\_t^{(i)}, \boldsy
 
 for $t=1, \dots, T$. It is possible to show that this minimization leads to the weighted least squares (WLS) solution 
 \begin{equation}
-(a_t, \boldsymbol{b}\_t', \vech (\boldsymbol{C}\_t^* )')' = (\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{X}\_t)^{-1}\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{e}\_t,
+(a_t, \boldsymbol{b}\_t', \text{vech} (\boldsymbol{C}\_t^* )')' = (\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{X}\_t)^{-1}\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{e}\_t,
 \tag{13}
 \label{eq:MEIS_WLS}
 \end{equation}
