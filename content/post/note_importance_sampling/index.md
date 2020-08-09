@@ -505,9 +505,9 @@ I am grateful to Siem Jan Koopman for his guidance in exploring these methods, t
 
 [^durbinkoopman2012]: Durbin, J. and Koopman, S. J. (2012), _Time Series Analysis by State Space Methods: Second Edition_, Oxford Statistical Science Series. OUP Oxford.
 
-[^JungbackerKoopman2007]: Jungbacker, B. and Koopman, S. J. (2007). _Monte Carlo Estimation for nonlinear non-Gaussian state space models_. Biometrika, 94(4):827–839.
+[^JungbackerKoopman2007]: Jungbacker, B. and Koopman, S. J. (2007). _Monte Carlo Estimation for Nonlinear Non-Gaussian State Space Models_. Biometrika, 94(4):827–839.
 
-[^Koopmanetal2018]: Koopman, S. J., Lit, R., and Nguyen, T. M. (2018). _Modified efficient importance sampling for partially non-Gaussian state space models_. Statistica Neerlandica, 73(1):44–62.
+[^Koopmanetal2018]: Koopman, S. J., Lit, R., and Nguyen, T. M. (2018). _Modified Efficient Importance Sampling for Partially Non-Gaussian State Space Models_. Statistica Neerlandica, 73(1):44–62.
 
 [^RichardZhang2007]: Richard, J.-F. and Zhang, W. (2007). _Efficient High-dimensional Importance Sampling_. Journal of Econometrics, 141(2):1385–1411.
 
