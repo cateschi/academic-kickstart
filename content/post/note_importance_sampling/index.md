@@ -79,6 +79,7 @@ image = "theme-cupcake.png"
 caption = "Cupcake"
 +++
 
+\newcommand{\vech}{\operatorname{vech}}
 
 ## Linear Gaussian state space model
 
@@ -473,7 +474,7 @@ The matrix $\boldsymbol{C}\_t$ is retrieved by multiplying the off-diagonal elem
 
 Notice that in the weighted least squares problem $S$ defines the "sample size". This also means that the simulation smoothing, which samples $\boldsymbol{\theta}^{(i)}$, is done prior to the weighted least squares estimation, for initial values of $\boldsymbol{A}\_t$ (for instance $\boldsymbol{A}\_t = \boldsymbol{I}$) and $\boldsymbol{z}\_t$ (for instance $\boldsymbol{z}\_t = \boldsymbol{0}$). The MEIS (simulation smoothing + weighted least square) is iterated until convergence (see \cite{Koopmanetal2018} for a choice of convergence criterion).
 
-Richard and Zhang (2007)[^RichardZhang2007] advise _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. They generally recommend against presetting a number S of EIS iterations. Instead, They prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
+Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. We generally recommend against presetting a number S of EIS iterations. Instead, we prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
 
 
 
