@@ -1,6 +1,6 @@
 +++
 title = "A note on importance sampling for state space models"
-subtitle = ""
+subtitle = "Soome tools to solve nonlinearities in state space models"
 
 date = 2020-08-03T00:00:00
 lastmod = 2020-08-03T00:00:00
