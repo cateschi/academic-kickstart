@@ -462,9 +462,9 @@ for $t=1, \dots, T$. It is possible to show that this minimization leads to the 
 for $t=1, \dots, T$, with $\boldsymbol{e}\_t = (\log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(1)}; \boldsymbol{\beta}), \dots, \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(S)}; \boldsymbol{\beta}))$, $\boldsymbol{W}\_t$ a $S \times S$ diagonal matrix whose diagonal elements correspond to the importance weights $m_i$, $i=1, \dots, S$ (defined in the "Implementation remarks" section), and 
 \begin{equation*}
 \boldsymbol{X}\_t = \left[ \begin{array}{ccc} 
-1 & \boldsymbol{\theta}\_t^{(1)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(1)} \boldsymbol{\theta}\_t^{(1)'})' \\
-1 & \boldsymbol{\theta}\_t^{(2)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(2)} \boldsymbol{\theta}\_t^{(2)'})' \\
-\vdots & \vdots & \vdots \\
+1 & \boldsymbol{\theta}\_t^{(1)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(1)} \boldsymbol{\theta}\_t^{(1)'})' \\\\\\
+1 & \boldsymbol{\theta}\_t^{(2)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(2)} \boldsymbol{\theta}\_t^{(2)'})' \\\\\\
+\vdots & \vdots & \vdots \\\\\\
 1 & \boldsymbol{\theta}\_t^{(S)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(S)} \boldsymbol{\theta}\_t^{(S)'})'
 \end{array}    \right].
 \end{equation*}
