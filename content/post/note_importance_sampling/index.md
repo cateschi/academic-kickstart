@@ -77,9 +77,6 @@ caption = "Coffee theme with Playfair font"
 album = "gallery"
 image = "theme-cupcake.png"
 caption = "Cupcake"
-
-\newcommand{\vech}{\operatorname{vech}}
-
 +++
 
 
@@ -457,18 +454,20 @@ The evaluation and minimization of $I_t^* $ can be done via importance sampling,
 I_t^* = \frac{1}{S} \sum_{i=1}^S \lambda^2(\boldsymbol{\theta}\_t^{(i)}, \boldsymbol{y}\_t ; \boldsymbol{\beta}) w(\boldsymbol{\theta}\_t^{(i)}, \boldsymbol{y}\_t ; \boldsymbol{\beta}), \quad \boldsymbol{\theta}\_t^{(i)} \sim g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t),
 \end{equation*}
 
-for $t=1, \dots, T$. It is possible to show that this minimization leads to the weighted least squares solution 
-\begin{equation*}
+for $t=1, \dots, T$. It is possible to show that this minimization leads to the weighted least squares (WLS) solution 
+\begin{equation}
 (a_t, \boldsymbol{b}\_t', \vech (\boldsymbol{C}\_t^* )')' = (\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{X}\_t)^{-1}\boldsymbol{X}\_t' \boldsymbol{W}\_t \boldsymbol{e}\_t,
-\end{equation*}
+\tag{13}
+\label{eq:MEIS_WLS}
+\end{equation}
 
 for $t=1, \dots, T$, with $\boldsymbol{e}\_t = (\log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(1)}; \boldsymbol{\beta}), \dots, \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(S)}; \boldsymbol{\beta}))$, $\boldsymbol{W}\_t$ a $S \times S$ diagonal matrix whose diagonal elements correspond to the importance weights $m_i$, $i=1, \dots, S$ (defined in the "Implementation remarks" section), and 
 \begin{equation*}
 \boldsymbol{X}\_t = \left[ \begin{array}{ccc} 
-1 & \boldsymbol{\theta}\_t^{(1)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(1)} \boldsymbol{\theta}\_t^{(1)'})' \\\\\\
-1 & \boldsymbol{\theta}\_t^{(2)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(2)} \boldsymbol{\theta}\_t^{(2)'})' \\\\\\
+1 & \boldsymbol{\theta}\_t^{(1)'} & -(1/2) \text{vech} (\boldsymbol{\theta}\_t^{(1)} \boldsymbol{\theta}\_t^{(1)'})' \\\\\\
+1 & \boldsymbol{\theta}\_t^{(2)'} & -(1/2) \text{vech} (\boldsymbol{\theta}\_t^{(2)} \boldsymbol{\theta}\_t^{(2)'})' \\\\\\
 \vdots & \vdots & \vdots \\\\\\
-1 & \boldsymbol{\theta}\_t^{(S)'} & -(1/2) \vech (\boldsymbol{\theta}\_t^{(S)} \boldsymbol{\theta}\_t^{(S)'})'
+1 & \boldsymbol{\theta}\_t^{(S)'} & -(1/2) \text{vech} (\boldsymbol{\theta}\_t^{(S)} \boldsymbol{\theta}\_t^{(S)'})'
 \end{array}    \right].
 \end{equation*}
 
@@ -476,7 +475,7 @@ The matrix $\boldsymbol{C}\_t$ is retrieved by multiplying the off-diagonal elem
 
 Notice that in the weighted least squares problem $S$ defines the "sample size". This also means that the simulation smoothing, which samples $\boldsymbol{\theta}^{(i)}$, is done prior to the weighted least squares estimation, for initial values of $\boldsymbol{A}\_t$ (for instance $\boldsymbol{A}\_t = \boldsymbol{I}$) and $\boldsymbol{z}\_t$ (for instance $\boldsymbol{z}\_t = \boldsymbol{0}$). The MEIS (simulation smoothing + weighted least square) is iterated until convergence (see Koopman et al. (2018)[^Koopmanetal2018] for a choice of convergence criterion).
 
-Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. We generally recommend against presetting a number S of EIS iterations. Instead, we prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
+Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of \eqref{eq:MEIS_WLS}, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. We generally recommend against presetting a number S of EIS iterations. Instead, we prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
 
 
 
