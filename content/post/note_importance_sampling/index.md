@@ -10,7 +10,7 @@ draft = false
 authors = []
 
 tags = []
-summary = ""
+summary = "Soome tools to solve nonlinearities in state space models"
 
 # Link to related code
 # url_code = "https://github.com/HannoReuvers/Software_comparison_DW"
