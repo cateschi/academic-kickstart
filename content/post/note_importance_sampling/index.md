@@ -555,7 +555,7 @@ g_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-g_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t
 \end{aligned}
 \end{equation*}
 
-for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\vtheta$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
 
 The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\boldsymbol{\theta}^{(i)})$, with 
 \begin{equation*} 
@@ -571,11 +571,11 @@ for $t=1,\dots, T$.
 
 In this specific example I have to be careful with values of $y_t$ that are very close to zero because they make $\ddot{p}(y_t|\theta_t)$ very small and therefore $A_t$ very large. This causes numerical problems. A practical way to deal with this issue is to replace these values by a small constant value (I set equal to 0.4 values that are between 0 and 0.4, and equal to -0.4 values that are between -0.4 and 0).
 
-The following pictures show the results of importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in Section \ref{section:choice_density}, for simulated series according to model \eqref{eq:SV_model}.
+Figures 3 and 4 show, respectively, the results of mode estimation, and importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for simulated series according to model \eqref{eq:SV_model}.
 
 {{< figure src="sv_mode_est.png" title="Figure 3: Generated (true) $\theta_t$ in black, and its mode estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.93, \hat{\boldsymbol{Q}}=6.09$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp_approx} used to get the initial values. Exact initialization." >}}
 
-{{< figure src="sv_imp_est.png" title="Figure 4: Generated (true) $\theta_t$ in black, and its importance estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\mT}=0.93, \hat{\mQ}=6.09$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp}. Exact initialization. $S=30$." >}}
+{{< figure src="sv_imp_est.png" title="Figure 4: Generated (true) $\theta_t$ in black, and its importance estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.93, \hat{\boldsymbol{Q}}=6.09$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp}. Exact initialization. $S=30$." >}}
 
 
 
