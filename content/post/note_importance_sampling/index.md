@@ -488,8 +488,8 @@ Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights
 Suppose that the observed univariate series $y_t$ is Poisson-distributed with stochastic intensity $\lambda_t = \exp(\theta_t)$:
 \begin{equation} 
 \begin{aligned}
-y_t &\sim P (\exp(\theta_t)) \\
-\theta_t &= \alpha_t \\
+y_t &\sim P \left(\exp(\theta_t)\right) \\\\\\
+\theta_t &= \alpha_t \\\\\\
 \alpha_{t+1} &= 0.5 \alpha_t + \eta_t, \quad \eta_t \sim N(0, 0.2),
 \end{aligned}
 \tag{14}
@@ -502,8 +502,8 @@ I can now estimate the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to t
 
 \begin{equation*} 
 \begin{aligned}
-g_t + \frac{1}{\exp(g_t)}(y_t - \exp(g_t)) &= \theta_t + \varepsilon_t, \quad \varepsilon_t \sim N \left(0, \frac{1}{\exp(g_t)}\right) \\
-\theta_t &= \alpha_t \\
+g_t + \frac{1}{\exp(g_t)}(y_t - \exp(g_t)) &= \theta_t + \varepsilon_t, \quad \varepsilon_t \sim N \left(0, \frac{1}{\exp(g_t)}\right) \\\\\\
+\theta_t &= \alpha_t \\\\\\
 \alpha_{t+1} &= \boldsymbol{T} \alpha_t + \eta_t, \quad \eta_t \sim N (0, \boldsymbol{Q}),
 \end{aligned}
 \end{equation*}
