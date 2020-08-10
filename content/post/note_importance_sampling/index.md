@@ -555,9 +555,9 @@ g_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-g_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t
 \end{aligned}
 \end{equation*}
 
-for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement simulation smoothing.
 
-The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\boldsymbol{\theta}^{(i)})$, with 
+The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\theta_t^{(i)})$, with 
 \begin{equation*} 
 p(y_t|\theta_t^{(i)}) =  \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t^{(i)})) -\frac{1}{2} y_t^2 \exp(-c-\theta_t^{(i)}) \right),
 \end{equation*}
