@@ -524,7 +524,7 @@ for $t=1,\dots, T$.
 
 The following pictures show the results of the importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for simulated series according to model \eqref{eq:Possion_model}.
 
-{{< figure src="poisson_mode_est.png" title="Figure 1: Generated (true) $\theta_t$ in black, and its mode estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.02, \hat{\boldsymbol{Q}}=0.19$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp_approx} used to get the initial values. Exact initialization." >}}
+{{< figure src="poisson_mode_est.png" fig.cap=paste("Figure 1") title="Figure 1: Generated (true) $\theta_t$ in black, and its mode estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.02, \hat{\boldsymbol{Q}}=0.19$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp_approx} used to get the initial values. Exact initialization." >}}
 
 {{< figure src="poisson_imp_est.png" title="Figure 2: Generated (true) $\theta_t$ in black, and its importance estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.02, \hat{\boldsymbol{Q}}=0.19$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp}. Exact initialization. $S=30$." >}}
 
