@@ -80,6 +80,13 @@ caption = "Cupcake"
 +++
 
 
+
+## Introduction
+
+This note explains how importance sampling can be used in order to perform both parameter and state estimation in nonlinear (non-Gaussian) state space models. The emphasis is on importance sampling by mode estimation, but I also shortly cover modified efficient importance sampling. I report two examples to show how importance sampling works in practice, and I attach the R codes that can be used to replicate them.
+
+
+
 ## Linear Gaussian state space model
 
 The linear Gaussian state space model takes the following form:
