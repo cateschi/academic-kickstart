@@ -483,7 +483,7 @@ Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights
 
 
 
-### Poisson model
+### Poisson model with stochastic intensity
 
 Suppose that the observed univariate series $y_t$ is Poisson-distributed with stochastic intensity $\lambda_t = \exp(\theta_t)$:
 \begin{equation} 
@@ -508,7 +508,7 @@ g_t + \frac{1}{\exp(g_t)}(y_t - \exp(g_t)) &= \theta_t + \varepsilon_t, \quad \v
 \end{aligned}
 \end{equation*}
 
-for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate  $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\exp(\hat{\theta}\_t)}(y_t - \exp(\hat{\theta}\_t))$, and $A_t = \frac{1}{\exp(\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate  $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\exp(\hat{\theta}\_t)}(y_t - \exp(\hat{\theta}\_t))$, and $A_t = \frac{1}{\exp(\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement simulation smoothing.
 
 The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where  $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\theta_t^{(i)})$, with 
 \begin{equation*} 
@@ -522,7 +522,7 @@ for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t
 
 for $t=1,\dots, T$.
 
-The following pictures show the results of importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for simulated series according to model \eqref{eq:Possion_model}.
+The following pictures show the results of the importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for simulated series according to model \eqref{eq:Possion_model}.
 
 
 
