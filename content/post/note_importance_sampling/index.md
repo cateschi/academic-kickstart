@@ -498,7 +498,7 @@ y_t &\sim P \left(\exp(\theta_t)\right) \\\\\\
 
 for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.5, \boldsymbol{Q}=0.2$. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp (\theta_t y_t - \exp \theta_t - \log y_t!)$, and therefore $\dot{p}(y_t|\theta_t) = y_t - \exp \theta_t$ and $\ddot{p}(y_t|\theta_t) = - \exp \theta_t$.
 
-I can now estimate the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
+I can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
 
 \begin{equation*} 
 \begin{aligned}
@@ -531,6 +531,52 @@ Figures 1 and 2 show, respectively, the results of mode estimation, and importan
 
 
 ### Stochastic volatility model
+
+Suppose that the observed univariate series $y_t$ is Normally-distributed with time varying variance $\sigma_t^2 = \exp(c + \theta_t)$:
+\begin{equation} 
+\begin{aligned}
+y_t &\sim N (0, \exp(c + \theta_t)) \\\\\\
+\theta_t &= \alpha_t \\\\\\
+\alpha_{t+1} &= 0.98 \alpha_t + \eta_t, \quad \eta_t \sim N(0, 0.0255),
+\end{aligned}
+\tag{15}
+\label{eq:SV_model}
+\end{equation}
+
+for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.98, \boldsymbol{Q}=0.0255$. The parameter $c$ could be estimated by maximum likelihood but I keep it fixed as $c=1$ because the maximization of the log-likelihood is more stable in this way. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t)) -\frac{1}{2} y_t^2 \exp(-c-\theta_t) \right)$, and therefore $\dot{p}(y_t|\theta_t) = -\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\theta_t)$ and $\ddot{p}(y_t|\theta_t) = -  \frac{1}{2}y_t^2 \exp(-c-\theta_t)$.
+
+I can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
+
+\begin{equation*} 
+\begin{aligned}
+g_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-g_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-g_t)\right) &= \theta_t + \varepsilon_t, \quad \varepsilon_t \sim N \left(0, \frac{1}{\frac{1}{2}y_t^2 \exp(-c-g_t)}\right) \\\\\\
+\theta_t &= \alpha_t \\\\\\
+\alpha_{t+1} &= \boldsymbol{T} \alpha_t + \eta_t, \quad \eta_t \sim N (0, \boldsymbol{Q}),
+\end{aligned}
+\end{equation*}
+
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\vtheta$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
+
+The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\boldsymbol{\theta}^{(i)})$, with 
+\begin{equation*} 
+p(y_t|\theta_t^{(i)}) =  \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t^{(i)})) -\frac{1}{2} y_t^2 \exp(-c-\theta_t^{(i)}) \right),
+\end{equation*}
+
+for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t|\boldsymbol{\theta}^{(i)})$, with
+\begin{equation*} 
+ g(z_t|\theta_t) = \exp \left( - \frac{1}{2} \log (2 \pi) + \frac{1}{2} \log ( A_t^{-1}) - \frac{1}{2}(z_t - \theta_t^{(i)})' A_t^{-1} (z_t - \theta_t^{(i)}) \right),
+\end{equation*}
+
+for $t=1,\dots, T$.
+
+In this specific example I have to be careful with values of $y_t$ that are very close to zero because they make $\ddot{p}(y_t|\theta_t)$ very small and therefore $A_t$ very large. This causes numerical problems. A practical way to deal with this issue is to replace these values by a small constant value (I set equal to 0.4 values that are between 0 and 0.4, and equal to -0.4 values that are between -0.4 and 0).
+
+The following pictures show the results of importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in Section \ref{section:choice_density}, for simulated series according to model \eqref{eq:SV_model}.
+
+{{< figure src="poisson_mode_est.png" title="Figure 3: Generated (true) $\theta_t$ in black, and its mode estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.93, \hat{\boldsymbol{Q}}=6.09$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp_approx} used to get the initial values. Exact initialization." >}}
+
+{{< figure src="poisson_imp_est.png" title="Figure 4: Generated (true) $\theta_t$ in black, and its importance estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\mT}=0.93, \hat{\mQ}=6.09$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp}. Exact initialization. $S=30$." >}}
+
 
 
 
