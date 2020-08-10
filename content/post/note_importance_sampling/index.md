@@ -485,6 +485,45 @@ Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights
 
 ### Poisson model
 
+Suppose that the observed univariate series $y_t$ is Poisson-distributed with stochastic intensity $\lambda_t = \exp(\theta_t)$:
+\begin{equation} 
+\begin{aligned}
+y_t &\sim P (\exp(\theta_t)) \\
+\theta_t &= \alpha_t \\
+\alpha_{t+1} &= 0.5 \alpha_t + \eta_t, \quad \eta_t \sim N(0, 0.2),
+\end{aligned}
+\tag{14}
+\label{eq:Possion_model}
+\end{equation}
+
+for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.5, \boldsymbol{Q}=0.2$. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp (\theta_t y_t - \exp \theta_t - \log y_t!)$, and therefore $\dot{p}(y_t|\theta_t) = y_t - \exp \theta_t$ and $\ddot{p}(y_t|\theta_t) = - \exp \theta_t$.
+
+I can now estimate the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
+
+\begin{equation*} 
+\begin{aligned}
+g_t + \frac{1}{\exp(g_t)}(y_t - \exp(g_t)) &= \theta_t + \varepsilon_t, \quad \varepsilon_t \sim N \left(0, \frac{1}{\exp(g_t)}\right) \\
+\theta_t &= \alpha_t \\
+\alpha_{t+1} &= \boldsymbol{T} \alpha_t + \eta_t, \quad \eta_t \sim N (0, \boldsymbol{Q}),
+\end{aligned}
+\end{equation*}
+
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\vg=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate  $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\exp(\hat{\theta}\_t)}(y_t - \exp(\hat{\theta}\_t))$, and $A_t = \frac{1}{\exp(\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement the simulation smoothing.
+
+The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where  $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\theta_t^{(i)})$, with 
+\begin{equation*} 
+p(y_t|\theta_t^{(i)}) = \exp (\theta_t^{(i)} y_t - \exp \theta_t^{(i)} - \log y_t!),
+\end{equation*}
+
+for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t|\theta_t^{(i)})$, with
+\begin{equation*} 
+ g(z_t|\theta_t) = \exp \left( - \frac{1}{2} \log (2 \pi) + \frac{1}{2} \log (A_t^{-1}) - \frac{1}{2}(z_t - \theta_t^{(i)})' A_t^{-1} (z_t - \theta_t^{(i)}) \right),
+\end{equation*}
+
+for $t=1,\dots, T$.
+
+The following pictures show the results of importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for simulated series according to model \eqref{eq:Possion_model}.
+
 
 
 ### Stochastic volatility model
