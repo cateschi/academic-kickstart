@@ -528,6 +528,8 @@ Figures 1 and 2 show, respectively, the results of mode estimation, and importan
 
 {{< figure src="poisson_imp_est.png" title="Figure 2: Generated (true) $\theta_t$ in black, and its importance estimate $\hat{\theta}\_t$ in red, at the estimated parameters $\hat{\boldsymbol{T}}=0.02, \hat{\boldsymbol{Q}}=0.19$ based on the maximization of the log-likelihood \eqref{eq:logl_y_imp}. Exact initialization. $S=30$." >}}
 
+![My helpful screenshot](poisson_mode_est.png)
+
 
 
 ### Stochastic volatility model
