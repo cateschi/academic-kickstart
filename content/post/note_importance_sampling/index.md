@@ -562,7 +562,7 @@ The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\bol
 p(y_t|\theta_t^{(i)}) =  \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t^{(i)})) -\frac{1}{2} y_t^2 \exp(-c-\theta_t^{(i)}) \right),
 \end{equation*}
 
-for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t|\boldsymbol{\theta}^{(i)})$, with
+for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t|\theta_t^{(i)})$, with
 \begin{equation*} 
  g(z_t|\theta_t) = \exp \left( - \frac{1}{2} \log (2 \pi) + \frac{1}{2} \log ( A_t^{-1}) - \frac{1}{2}(z_t - \theta_t^{(i)})' A_t^{-1} (z_t - \theta_t^{(i)}) \right),
 \end{equation*}
