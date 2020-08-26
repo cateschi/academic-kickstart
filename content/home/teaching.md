@@ -21,7 +21,8 @@ weight = 50
 The description of the courses can be found _[here](https://www.maastrichtuniversity.nl/education/course-finder)_
 
 + As tutor/teaching assistant:
-  * Data Analytics (M.Sc. in Information Management and Business Intelligence), 2020
+  * Data Analytics (M.Sc. in Information Management and Business Intelligence/Supply Chain
+Management), 2020
   * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
   * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
   * Pre-academic Training in Statistics (M.A.), 2018 - 2019
