@@ -17,15 +17,15 @@ weight = 70
 
 +++
 
-_[Maastricht University Department of Quantitative Economics](https://www.maastrichtuniversity.nl/research/department-quantitative-economics)_
+[Maastricht University Department of Quantitative Economics](https://www.maastrichtuniversity.nl/research/department-quantitative-economics)
 
-_[CBS - Statistics Netherlands](https://www.cbs.nl/en-gb)_
+[CBS - Statistics Netherlands](https://www.cbs.nl/en-gb)
 
 <h2>Co-authors</h2>
 
-+ _[Siem Jan Koopman](http://sjkoopman.net/)_
-+ _[Franz Palm](http://researchers-sbe.unimaas.nl/franzpalm/)_
-+ _[Stephan Smeekes](https://www.stephansmeekes.nl/)_
-+ _[Jan van den Brakel](https://www.maastrichtuniversity.nl/j.vandenbrakel)_
++ [Siem Jan Koopman](http://sjkoopman.net/)
++ [Franz Palm](http://researchers-sbe.unimaas.nl/franzpalm/)
++ [Stephan Smeekes](https://www.stephansmeekes.nl/)
++ [Jan van den Brakel](https://www.maastrichtuniversity.nl/j.vandenbrakel)
 
 
