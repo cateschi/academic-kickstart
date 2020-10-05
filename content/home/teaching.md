@@ -18,9 +18,7 @@ weight = 50
 +++
 <h2>Maastricht University</h2>
 
-The description of the courses can be found _[here](https://www.maastrichtuniversity.nl/education/course-finder)_
-
-+ As tutor/teaching assistant:
++ As tutor/teaching assistant (the description of the courses can be found [here](https://www.maastrichtuniversity.nl/education/course-finder)):
   * Data Analytics (M.Sc. in International Business), present
   * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
   * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
