@@ -1,6 +1,6 @@
 ---
 title: "Estimation of time-varying state correlation in state space models"
-authors: ["Siem Jan Koopman, Franz Palm, Caterina Schiavoni, Stephan Smeekes and Jan van den Brakel"]
+authors: ["Caterina Schiavoni, Siem Jan Koopman, Franz Palm, Stephan Smeekes and Jan van den Brakel"]
 date: "2020-08-03T00:00:00"
 doi: ""
 
