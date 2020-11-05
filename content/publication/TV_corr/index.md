@@ -27,7 +27,7 @@ featured: false
 
 links:
 url_pdf: ''
-url_code: ''
+url_code: 'https://github.com/cateschi/Time_varying_correlation'
 url_dataset: ''
 url_poster: ''
 url_project: ''
