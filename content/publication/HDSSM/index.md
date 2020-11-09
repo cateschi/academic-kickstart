@@ -26,7 +26,7 @@ tags: ""
 featured: false
 
 links:
-url_pdf: ''
+url_pdf: 'https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12626'
 url_code: "https://github.com/cateschi/High_dimensional_state_space_model"
 url_dataset: ''
 url_poster: ''
