@@ -31,6 +31,6 @@ weight = 70
 <h2>Other blogs</h2>
 
 + [Climate Econometrics blog](http://www.climateeconometrics.org/category/researchblog/)
-+ [Hyndisght blog](https://robjhyndman.com/hyndsight/)
++ [Hyndsight blog](https://robjhyndman.com/hyndsight/)
 
 
