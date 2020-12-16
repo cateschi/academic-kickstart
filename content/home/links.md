@@ -28,4 +28,8 @@ weight = 70
 + [Stephan Smeekes](https://www.stephansmeekes.nl/)
 + [Jan van den Brakel](https://www.maastrichtuniversity.nl/j.vandenbrakel)
 
+<h2>Other blogs</h2>
++ [Climate Econometrics blog](http://www.climateeconometrics.org/category/researchblog/)
++ [Hyndisght blog](https://robjhyndman.com/hyndsight/)
+
 
