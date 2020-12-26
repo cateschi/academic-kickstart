@@ -30,7 +30,8 @@ weight = 70
 
 <h2>Other blogs</h2>
 
++ [3blue1brown](https://www.3blue1brown.com/)
 + [Climate Econometrics blog](http://www.climateeconometrics.org/category/researchblog/)
 + [Hyndsight blog](https://robjhyndman.com/hyndsight/)
-
++ [Not So Standard Deviations](https://nssdeviations.com/)
 
