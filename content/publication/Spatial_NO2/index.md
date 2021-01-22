@@ -1,7 +1,7 @@
 ---
 title: "The spatial lag state space model with an application to regional concentrations of $NO_2$ in the Netherlands"
 authors: ["Caterina Schiavoni"]
-date: "2021-21-01T00:00:00"
+date: "2021-01-21T00:00:00"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
