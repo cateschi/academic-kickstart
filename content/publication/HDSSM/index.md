@@ -1,7 +1,7 @@
 ---
 title: "A dynamic factor model approach to incorporate Big Data in state space models for official statistics"
 authors: ["Caterina Schiavoni, Franz Palm, Stephan Smeekes and Jan van den Brakel"]
-date: "2020-08-02T00:00:00"
+date: "2021-01-22T00:00:00"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
@@ -14,10 +14,10 @@ publishDate: ""
 publication_types: ""
 
 # Publication name and optional abbreviated publication name.
-publication: "_Journal of the Royal Statistical Society: Series A (Statistics in Society)_, forthcoming"
+publication: "_Journal of the Royal Statistical Society: Series A (Statistics in Society)_, 184(1), 324-353"
 publication_short: ""
 
-abstract: "In this paper we consider estimation of unobserved components in state space models using a dynamic factor approach to incorporate auxiliary information from high-dimensional data sources. We apply the methodology to unemployment estimation as done by Statistics Netherlands, who uses a multivariate state space model to produce monthly figures for the unemployment using series observed with the labour force survey (LFS). We extend the model by including auxiliary series about job search behaviour from Google Trends and claimant counts, partially observed at higher frequencies. Our factor model allows for nowcasting the variable of interest, providing reliable unemployment estimates in real time before LFS data become available."
+abstract: "In this paper we consider estimation of unobserved components in state space models using a dynamic factor approach to incorporate auxiliary information from high‐dimensional data sources. We apply the methodology to unemployment estimation as done by Statistics Netherlands, who uses a multivariate state space model to produce monthly figures for unemployment using series observed with the labour force survey (LFS). We extend the model by including auxiliary series of Google Trends about job‐search and economic uncertainty, and claimant counts, partially observed at higher frequencies. Our factor model allows for nowcasting the variable of interest, providing reliable unemployment estimates in real‐time before LFS data become available."
 
 # Summary. An optional shortened abstract.
 summary: ""
