@@ -1,7 +1,7 @@
 ---
 title: "A dynamic factor model approach to incorporate Big Data in state space models for official statistics"
 authors: ["Caterina Schiavoni, Franz Palm, Stephan Smeekes and Jan van den Brakel"]
-date: "2021-01-20T00:00:00"
+date: "2021-01-19T00:00:00"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
