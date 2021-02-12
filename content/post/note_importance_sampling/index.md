@@ -589,7 +589,7 @@ Figures 3 and 4 show, respectively, the results of mode estimation, and importan
 
 ## Acknowledgments
 
-I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me undertsand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
+I am grateful to Siem Jan Koopman for his guidance in exploring these methods, to Ilka van de Werve for sharing materials that helped me understand this topic, and to Franz Palm, Stephan Smeekes and Jan van den Brakel for regular and useful discussions around it. All errors are my own.
 
 
 
