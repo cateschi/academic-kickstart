@@ -83,7 +83,7 @@ caption = "Cupcake"
 
 ## Introduction
 
-This note explains how importance sampling can be used in order to perform both parameter and state estimation in nonlinear (non-Gaussian) state space models. The emphasis is on importance sampling by mode estimation, but I also shortly cover modified efficient importance sampling. I report two examples to show how importance sampling works in practice, and I attach the R codes that can be used to replicate them.
+This note explains how importance sampling can be used in order to perform both parameter and state estimation in nonlinear (non-Gaussian) state space models. The emphasis is on importance sampling by mode estimation, but we also shortly cover modified efficient importance sampling. We report two examples to show how importance sampling works in practice, and we attach the R codes that can be used to replicate them.
 
 
 
@@ -148,7 +148,7 @@ where the prediction errors $\boldsymbol{v}\_t$ and their covariance matrix $\bo
 
 for $t = 1, \dots, T$. The $m \times 1$ vector $\boldsymbol{a}\_{t|t}$ is the filter estimate of the state vector $\boldsymbol{\alpha}\_t$, and $\boldsymbol{P}\_{t|t}$ is the respective covariance matrix. 
 
-I define with $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 1$ signal vector (this will simplify some derivations). More accurate estimates of the signal vector can be efficiently obtained by applying an additional Kalman smoother; I define the estimate from the Kalman filter smoother (KFS) as $\hat{\boldsymbol{\theta}}\_t = \text{E} (\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \arg \max_{\boldsymbol{\alpha}\_t} g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, for $t=1, \dots, T$, which implies that $\hat{\boldsymbol{\theta}}\_t$ is the mode of $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. The Kalman smoother recursions of Durbin and Koopman (2012)[^durbinkoopman2012] are:
+We define with $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$ the $n \times 1$ signal vector (this will simplify some derivations). More accurate estimates of the signal vector can be efficiently obtained by applying an additional Kalman smoother; we define the estimate from the Kalman filter smoother (KFS) as $\hat{\boldsymbol{\theta}}\_t = \text{E} (\boldsymbol{\theta}\_t | \boldsymbol{y}\_t) = \arg \max_{\boldsymbol{\alpha}\_t} g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, for $t=1, \dots, T$, which implies that $\hat{\boldsymbol{\theta}}\_t$ is the mode of $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. The Kalman smoother recursions of Durbin and Koopman (2012)[^durbinkoopman2012] are:
 
 \begin{equation*}
 \begin{aligned}
@@ -217,7 +217,7 @@ Later in this note it will become clearer why we can use the approximate linear 
 
 ### Importance sampling
 
-Importance sampling is an alternative and more accurate way for state estimation than mode estimation, but it may employ the latter method. Below I explain how it works.
+Importance sampling is an alternative and more accurate way for state estimation than mode estimation, but it may employ the latter method. Below we explain how it works.
 
 
 
@@ -235,17 +235,17 @@ which can be estimated by its Monte Carlo estimator
 
 It can be shown that $\hat{\boldsymbol{\theta}}\_{\text{M}}$ is an unbiased estimator of $\text{E} (\boldsymbol{\theta})$.
 
-In the case of the nonlinear non-Gaussian state space model, I wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$, which I do not know, but I can instead sample from a linear Gaussian distribution $g(\boldsymbol{\theta}|Y_T)$, which should resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible:
+In the case of the nonlinear non-Gaussian state space model, we wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$, which we do not know, but we can instead sample from a linear Gaussian distribution $g(\boldsymbol{\theta}|Y_T)$, which should resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible:
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) = \int_{\boldsymbol{\theta} \in \Theta} \frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)} g(\boldsymbol{\theta}|Y_T) d\boldsymbol{\theta} = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right],
 \end{equation*}
 
-where the subscript $g$ in the expectation operator indicates that the expectation is taken with respect to the Gaussian density $g(\boldsymbol{\theta}|Y_T)$, which I refer to as importance density. The Monte Carlo estimator of this expectation is then
+where the subscript $g$ in the expectation operator indicates that the expectation is taken with respect to the Gaussian density $g(\boldsymbol{\theta}|Y_T)$, which we refer to as importance density. The Monte Carlo estimator of this expectation is then
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{1}{S} \sum_{i=1}^S \frac{\tilde{\boldsymbol{\theta}}^{(i)} p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)}{g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)}, \quad \tilde{\boldsymbol{\theta}}^{(i)} \sim g(\boldsymbol{\theta}|Y_T).
 \end{equation*}
 
-In order to compute $\hat{\boldsymbol{\theta}}\_{\text{M}}$ based on the previous formula, I need to evaluate $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ for each draw of $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$. The problem is that I still do not have an analytical expression for $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$. I can apply the Bayesian rule in order to solve this issue:
+In order to compute $\hat{\boldsymbol{\theta}}\_{\text{M}}$ based on the previous formula, we need to evaluate $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ for each draw of $\tilde{\boldsymbol{\theta}}^{(i)}$ from $g(\boldsymbol{\theta}|Y_T)$. The problem is that we still do not have an analytical expression for $p(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$. We can apply the Bayesian rule in order to solve this issue:
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta}|Y_T)}{g(\boldsymbol{\theta}|Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} g(Y_T)p(\boldsymbol{\theta},Y_T)}{p(Y_T)g(\boldsymbol{\theta},Y_T)}\right] = \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\frac{\boldsymbol{\theta}\ p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] =  \frac{g(Y_T)}{p(Y_T)} \text{E}\_g \left[\boldsymbol{\theta} w(\boldsymbol{\theta}, Y_T) \right],
 \end{equation*}
@@ -264,27 +264,27 @@ and its Monte Carlo estimator is
 
 A few remarks are in place. Since the importance density $g(\boldsymbol{\theta}|Y_T)$ was chosen in order to resemble $p(\boldsymbol{\theta}|Y_T)$ as much as possible, the importance weights should be close to 1. In practice this does not always happen and $g(\tilde{\boldsymbol{\theta}}^{(i)}|Y_T)$ can sometimes get values that are so small to cause numerical problems. A way to deal with this problem is discuss later on in this note. 
 
-I mentioned at the beginning of this section that I wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if I would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then I would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
+We mentioned at the beginning of this section that We wish to draw $\boldsymbol{\theta}$ from the conditional distribution $p(\boldsymbol{\theta}|Y_T)$ instead of $p(\boldsymbol{\theta})$. Since $\boldsymbol{\theta}\_t = \boldsymbol{Z} \boldsymbol{\alpha}\_t$, the distribution $p(\boldsymbol{\theta})$ is implied by the transition equation of the state space model. Suppose that this equation implies a random walk dynamic for $\boldsymbol{\theta}$; if we would draw $\boldsymbol{\theta}$ from $p(\boldsymbol{\theta})$, then we would sample random walks that might be completely unrelated to the data that we have $(Y_T)$. This sampling method would therefore be inefficient. Sampling from $p(\boldsymbol{\theta}|Y_T)$ prevents this from happening.
 
 The importance weights are based on the joint densities $p(\boldsymbol{\theta},Y_T)$ and $g(\boldsymbol{\theta},Y_T)$, which allow both the observation and the transition equation of the state space model to be nonlinear and non-Gaussian. If the transition equation of the original model is assumed to be linear Gaussian, then 
 \begin{equation*}
 \text{E} (\boldsymbol{\theta}) =  \text{E}\_g \left[\frac{\boldsymbol{\theta} p(\boldsymbol{\theta},Y_T)}{g(\boldsymbol{\theta},Y_T)}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})p(\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})g(\boldsymbol{\theta})}\right] = \text{E}\_g \left[\frac{\boldsymbol{\theta} p(Y_T|\boldsymbol{\theta})}{g(Y_T|\boldsymbol{\theta})}\right] =\frac{\text{E}\_g \left[\boldsymbol{\theta} w(Y_T|\boldsymbol{\theta}) \right]}{\text{E}\_g \left[ w(Y_T|\boldsymbol{\theta}) \right]} ,
 \end{equation*}
 
-because the density distribution implied by the transition equation in the original model, $p(\boldsymbol{\theta})$, is actually linear Gaussian and therefore equal to $g(\boldsymbol{\theta})$. The importance weights now depend on the conditional distributions $p(Y_T|\boldsymbol{\theta})$ and $g(Y_T|\boldsymbol{\theta})$. This assumption again simplifies the analysis, and I will keep making it from this point onwards.
+because the density distribution implied by the transition equation in the original model, $p(\boldsymbol{\theta})$, is actually linear Gaussian and therefore equal to $g(\boldsymbol{\theta})$. The importance weights now depend on the conditional distributions $p(Y_T|\boldsymbol{\theta})$ and $g(Y_T|\boldsymbol{\theta})$. This assumption again simplifies the analysis, and we will keep making it from this point onwards.
 
 
 
 #### Choice of the importance density
 
-As already mentioned, in order to compute the Monte Carlo estimator \eqref{eq:MC_estimator}, I need to evaluate $p(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$ and $g(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$, for $i=1, \dots, S$. I know the analytical expression for $p(Y_T|\boldsymbol{\theta})$ but not for $g(Y_T|\boldsymbol{\theta})$ yet. I also mentioned that $g(Y_T|\boldsymbol{\theta})$ should resemble $p(Y_T|\boldsymbol{\theta})$ as much as possible.
+As already mentioned, in order to compute the Monte Carlo estimator \eqref{eq:MC_estimator}, we need to evaluate $p(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$ and $g(Y_T|\tilde{\boldsymbol{\theta}}^{(i)})$, for $i=1, \dots, S$. We know the analytical expression for $p(Y_T|\boldsymbol{\theta})$ but not for $g(Y_T|\boldsymbol{\theta})$ yet. We also mentioned that $g(Y_T|\boldsymbol{\theta})$ should resemble $p(Y_T|\boldsymbol{\theta})$ as much as possible.
 
 Since $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)$ is Gaussian, it can take the general expression
 \begin{equation*}
 g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = \exp \left( d_t + \boldsymbol{b}\_t' \boldsymbol{\theta}\_t - \frac{1}{2} \boldsymbol{\theta}\_t' \boldsymbol{C}\_t \boldsymbol{\theta}\_t \right),
 \end{equation*}
 
-for $t=1, \dots, T$. If I consider the linear Gaussian state space model
+for $t=1, \dots, T$. If we consider the linear Gaussian state space model
 \begin{equation*}
 \begin{aligned}
 \boldsymbol{y}\_t^* &= \boldsymbol{\theta}\_t + \boldsymbol{\varepsilon}\_t, \quad \boldsymbol{\varepsilon}\_t \sim N (\boldsymbol{0}, \boldsymbol{C}\_t^{-1}) \\\\\\
@@ -304,7 +304,7 @@ for $t=1, \dots, T$, with $\boldsymbol{y}\_t^* = \boldsymbol{C}\_t^{-1} \boldsym
 \label{eq:logl_ystar}
 \end{equation}
 
-with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y}\_t^* ) \log(2 \pi) - \boldsymbol{b}\_t'\boldsymbol{y}\_t^* \right)$, and $\dim(\boldsymbol{y}\_t^* )$ equal to the dimension of the vector $\boldsymbol{y}\_t^* $. I now have to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ (and therefore $d_t$) such that:
+with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y}\_t^* ) \log(2 \pi) - \boldsymbol{b}\_t'\boldsymbol{y}\_t^* \right)$, and $\dim(\boldsymbol{y}\_t^* )$ equal to the dimension of the vector $\boldsymbol{y}\_t^* $. We now have to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ (and therefore $d_t$) such that:
 \begin{equation*}
 \begin{aligned}
 \left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} &= \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
@@ -312,7 +312,7 @@ with $d_t = \frac{1}{2}\left( \log (\det \boldsymbol{C}\_t) - \dim(\boldsymbol{y
 \end{aligned}
 \end{equation*}
 
-for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in the "Mode estimation" section. I am now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now I get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
+for $t=1, \dots, T$, where $\hat{\boldsymbol{\theta}}\_t$ is the mode of $\log p(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ calculated as described in the "Mode estimation" section. We are now making sure that $g(Y_T|\boldsymbol{\theta})$ resembles $p(Y_T|\boldsymbol{\theta})$ as much as possible, since the first and second derivatives of the two distributions are the same, at the mode. This is a second-order approximation and as such is a stronger approximation than the one used in the extended Kalman filter (which is instead a first-order approximation). Now we get an expression for $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$:
 \begin{equation*}
 \begin{aligned}
 & \left. \frac{\partial \log g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \left. \frac{\partial \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t)}{\partial \boldsymbol{\theta}\_t} \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} \\\\\\
@@ -331,7 +331,7 @@ for  $t=1, \dots, T$.
 \end{aligned}
 \end{equation*}
 
-for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. I therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
+for  $t=1, \dots, T$. Notice that $\boldsymbol{C}\_t = \boldsymbol{A}\_t^{-1}$, with $\boldsymbol{A}\_t$ defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$, and $\boldsymbol{C}\_t^{-1}\boldsymbol{b}\_t =\hat{\boldsymbol{\theta}}\_t  + \boldsymbol{C}\_t^{-1} \left. \dot{p}(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) \right\vert_{\boldsymbol{\theta}\_t = \hat{\boldsymbol{\theta}}\_t} = \boldsymbol{z}\_t$, with $\boldsymbol{z}\_t$ also defined in the "Mode estimation" section and evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$. This implies that the linear Gaussian model \eqref{eq:ssm_approx}  evaluated at the mode $\hat{\boldsymbol{\theta}}\_t$ can actually be used as approximate model for the original nonlinear non-Gaussian state space model \eqref{eq:nonnormal_nonlinear_ssm}. We therefore conclude that $g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t) = g(\boldsymbol{y}\_t^* |\boldsymbol{\theta}\_t) =g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t)$, with
 \begin{equation} 
 \log g(\boldsymbol{z}\_t|\boldsymbol{\theta}\_t) = - \frac{\dim(\boldsymbol{z}\_t)}{2} \log (2 \pi) + \frac{1}{2} \log (\det\boldsymbol{A}\_t^{-1}) - \frac{1}{2}(\boldsymbol{z}\_t - \boldsymbol{\theta}\_t)' \boldsymbol{A}\_t^{-1} (\boldsymbol{z}\_t - \boldsymbol{\theta}\_t),
 \tag{9}
@@ -346,11 +346,11 @@ The method described above to choose $\boldsymbol{C}\_t$ and $\boldsymbol{b}\_t$
 
 #### Simulation smoothing
 
-The only ingredient that I am now missing in order to evaluate the importance weights, is the draw $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. I do not have an expression for $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, but I can still compute $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ by means of simulation smoothing.
+The only ingredient that we are now missing in order to evaluate the importance weights, is the draw $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$. We do not have an expression for $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$, but we can still compute $\tilde{\boldsymbol{\theta}}\_t^{(i)}$ by means of simulation smoothing.
 
-I first discuss what simulation smoothing is for general multivariate normal distributions, and I will then extend it to the case of state space models. Suppose that I want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
+We first discuss what simulation smoothing is for general multivariate normal distributions, and we will then extend it to the case of state space models. Suppose that we want to draw samples from the conditional Gaussian density $g(x|y)$. Let $x^+$ and $y^+$ be draws from the joint Gaussian distribution $g(x,y)$, and let $\hat{x} = \text{E} (x|y)$, and $\hat{x}^+ = \text{E} (x|y^+)$. It is possible to show that $\tilde{x} = \hat{x} + x^+ - \hat{x}^+$ is a draw from $g(x|y)$. This result holds for linear and Gaussian distributions.
 
-In the case of a nonlinear non-Gaussian state space model, I wish to draw samples from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ for $t=1,\dots,T$. Durbin and Koopman (2002)[^DurbinKoopman2002] show that the simulation smoothing works as follows:
+In the case of a nonlinear non-Gaussian state space model, we wish to draw samples from $g(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ for $t=1,\dots,T$. Durbin and Koopman (2002)[^DurbinKoopman2002] show that the simulation smoothing works as follows:
 
 1. Compute $\hat{\boldsymbol{\theta}}\_t = \text{E}(\boldsymbol{\theta}\_t|\boldsymbol{y}\_t)$ by mode estimation, i.e. using the (modified) Newton-Raphson method discussed in the "Mode estimation" section.
 2. Initialize $ \boldsymbol{\theta}\_1^+ = \boldsymbol{Z} \boldsymbol{\alpha}\_1^+, \boldsymbol{\alpha}\_1^+  \sim  N(\boldsymbol{0}, \boldsymbol{P}\_1)$ (the diffuse elements of $\boldsymbol{P}\_1$ could be set equal to 0).
@@ -390,7 +390,7 @@ for $t=1, \dots, T$, and with $\boldsymbol{B}\_t^* $ and $\boldsymbol{b}\_t^{(i)
 
 #### Evaluation and maximization of the log-likelihood
 
-So far I have implicitly assumed that the matrices $\boldsymbol{Z}, \boldsymbol{T}$, $\boldsymbol{H}$, and $\boldsymbol{Q}$ were known. In practice, they may depend on parameters that need to be estimated by maximum likelihood. Let me define with $\boldsymbol{\beta}$ the vector that contains these parameters.
+So far we have implicitly assumed that the matrices $\boldsymbol{Z}, \boldsymbol{T}$, $\boldsymbol{H}$, and $\boldsymbol{Q}$ were known. In practice, they may depend on parameters that need to be estimated by maximum likelihood. Let me define with $\boldsymbol{\beta}$ the vector that contains these parameters.
 
 The likelihood of the nonlinear non-Gaussian model \eqref{eq:nonnormal_nonlinear_ssm} was expressed in the "Monte Carlo integration" section as
 \begin{equation*}
@@ -399,7 +399,7 @@ p(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\text{E}[w(Y_T|\boldsymbo
 
 where $g(Y_T)$ is the likelihood of the linear Gaussian approximating model \eqref{eq:ssm_approx}. 
 
-In practice I evaluate the likelihood as Durbin and Koopman (2012, Chapter 11)[^durbinkoopman2012]:
+In practice we evaluate the likelihood as Durbin and Koopman (2012, Chapter 11)[^durbinkoopman2012]:
 \begin{equation*}
 \hat{p}(Y_T; \boldsymbol{\beta}) = g(Y_T; \boldsymbol{\beta})\frac{1}{S}\sum_{i=1}^S w(Y_T|\tilde{\boldsymbol{\theta}}^{(i)};\boldsymbol{\beta}).
 \end{equation*}
@@ -426,27 +426,27 @@ where $\hat{\boldsymbol{\theta}}$ is the mode of $\log p(\boldsymbol{\theta}|Y_T
 
 #### Implementation remarks
 
-I mentioned in the "Monte Carlo integration" section that the denominator of the importance weights can in practice be so small to cause numerical problems. I here report a way to implement importance weights that are numerically more stable, suggested in Koopman et al. (2018)[^Koopmanetal2018]. Recall the expression for the importance weights for a draw $i$, $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$. After some manipulation I can rewrite $w(Y_T|\boldsymbol{\theta}^{(i)}) = \exp(\bar{m}) \exp(m_i - \bar{m})$, where $m_i = \sum_{t=1}^T \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}) - \sum_{t=1}^T \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})$ and $\bar{m} = \frac{1}{S} \sum_{i=1}^S m_i$. The Monte Carlo estimator of $\boldsymbol{\theta}$ then becomes
+We mentioned in the "Monte Carlo integration" section that the denominator of the importance weights can in practice be so small to cause numerical problems. We here report a way to implement importance weights that are numerically more stable, suggested in Koopman et al. (2018)[^Koopmanetal2018]. Recall the expression for the importance weights for a draw $i$, $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$. After some manipulation we can rewrite $w(Y_T|\boldsymbol{\theta}^{(i)}) = \exp(\bar{m}) \exp(m_i - \bar{m})$, where $m_i = \sum_{t=1}^T \log p(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)}) - \sum_{t=1}^T \log g(\boldsymbol{y}\_t|\boldsymbol{\theta}\_t^{(i)})$ and $\bar{m} = \frac{1}{S} \sum_{i=1}^S m_i$. The Monte Carlo estimator of $\boldsymbol{\theta}$ then becomes
 \begin{equation*}
 \hat{\boldsymbol{\theta}}\_{\text{M}} = \frac{\sum_{i=1}^S \tilde{\boldsymbol{\theta}}^{(i)} \exp(m_i - \bar{m})}{\sum_{i=1}^S  \exp(m_i - \bar{m})}.
 \end{equation*}
 
-The log-likelihood \eqref{eq:logl_y_imp} becomes (I omit $\boldsymbol{\beta}$ in the formula for simplicity)
+The log-likelihood \eqref{eq:logl_y_imp} becomes (we omit $\boldsymbol{\beta}$ in the formula for simplicity)
 \begin{equation*}
 \log \hat{p}(Y_T) = \log g(Y_T) + \bar{m} - \log S + \log \left( \sum_{i=1}^S \exp(m_i - \bar{m}) \right).
 \end{equation*}
 
 In practice, if the values of the log-lieklihood are too large, maximize the average log-likelihood function expressed above: $\log \hat{p}(Y_T)/T$. The log-likelihood \eqref{eq:logl_y_imp_approx} stays the same.
 
-The same random seed and number of draws $S$ need to be used when implementing simulation smoothing, if I am maximizing the log-likelihood.
+The same random seed and number of draws $S$ need to be used when implementing simulation smoothing, if we are maximizing the log-likelihood.
 
-If the state space model has a linear and a nonlinear part, then the importance sampling can only be done for the nonlinear part of the model by conditioning on the state variables that are linear; I only have to simulate the part of $\boldsymbol{\theta}^{(i)}$ that is nonlinear, and keep constant the rest. 
+If the state space model has a linear and a nonlinear part, then the importance sampling can only be done for the nonlinear part of the model by conditioning on the state variables that are linear; we only have to simulate the part of $\boldsymbol{\theta}^{(i)}$ that is nonlinear, and keep constant the rest. 
 
 
 
 ### Modified efficient importance sampling
 
-So far I discussed how importance sampling works when $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ in equation \eqref{eq:logl_ystar} are chosen by mode estimation. There are also other ways to chose these importance parameters. Remember that the choice of $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ is fundamental in order to get an expression for the approximate linear Gaussian state space model \eqref{eq:ssm_approx}. The modified efficient importance sampling (MEIS) method of Koopman et al. (2018)[^Koopmanetal2018] and Scharth (2012, Chapter 5)[^Scharth2012], suggests to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ such that the criterion
+So far we discussed how importance sampling works when $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ in equation \eqref{eq:logl_ystar} are chosen by mode estimation. There are also other ways to chose these importance parameters. Remember that the choice of $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ is fundamental in order to get an expression for the approximate linear Gaussian state space model \eqref{eq:ssm_approx}. The modified efficient importance sampling (MEIS) method of Koopman et al. (2018)[^Koopmanetal2018] and Scharth (2012, Chapter 5)[^Scharth2012], suggests to choose $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ such that the criterion
 \begin{equation*}
 I_t = \int \lambda^2(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) p(\boldsymbol{\theta}\_t, \boldsymbol{y}\_t ; \boldsymbol{\beta}) d \boldsymbol{\theta}\_t
 \end{equation*}
@@ -482,7 +482,7 @@ The matrix $\boldsymbol{C}\_t$ is retrieved by multiplying the off-diagonal elem
 
 Notice that in the WLS problem $S$ defines the "sample size". This also means that simulation smoothing, which samples $\boldsymbol{\theta}^{(i)}$, is done prior to the WLS estimation, for initial values of $\boldsymbol{A}\_t$ (for instance $\boldsymbol{A}\_t = \boldsymbol{I}$) and $\boldsymbol{z}\_t$ (for instance $\boldsymbol{z}\_t = \boldsymbol{0}$). The MEIS (simulation smoothing + WLS) is iterated until convergence (see Koopman et al. (2018)[^Koopmanetal2018] for a choice of convergence criterion).
 
-Richard and Zhang (2007)[^RichardZhang2007] advise (I quote) _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of \eqref{eq:MEIS_WLS}, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. We generally recommend against presetting a number S of EIS iterations. Instead, we prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
+Richard and Zhang (2007)[^RichardZhang2007] advise (we quote) _to set all weights equal to one during the initial iteration(s) to avoid numerical instability of WLS computations under high variance weights. Actually, for most problems, the OLS version of \eqref{eq:MEIS_WLS}, whereby all weights remain set equal to one, is essentially as efficient as its WLS counterpart. We generally recommend against presetting a number S of EIS iterations. Instead, we prefer using a stopping rule based upon a relative change threshold of the order of $10^{-3}-10^{-5}$. Occasional failure to converge is a clear indicator of potential pathologies (e.g. bimodality of the target density) which, in extreme cases, might require extensions of the class S of samplers_.
 
 
 
@@ -505,7 +505,7 @@ y_t &\sim P \left(\exp(\theta_t)\right) \\\\\\
 
 for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.5, \boldsymbol{Q}=0.2$. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp (\theta_t y_t - \exp \theta_t - \log y_t!)$, and therefore $\dot{p}(y_t|\theta_t) = y_t - \exp \theta_t$ and $\ddot{p}(y_t|\theta_t) = - \exp \theta_t$.
 
-I can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
+We can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
 
 \begin{equation*} 
 \begin{aligned}
@@ -515,7 +515,7 @@ g_t + \frac{1}{\exp(g_t)}(y_t - \exp(g_t)) &= \theta_t + \varepsilon_t, \quad \v
 \end{aligned}
 \end{equation*}
 
-for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate  $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\exp(\hat{\theta}\_t)}(y_t - \exp(\hat{\theta}\_t))$, and $A_t = \frac{1}{\exp(\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement simulation smoothing.
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate  $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\exp(\hat{\theta}\_t)}(y_t - \exp(\hat{\theta}\_t))$, and $A_t = \frac{1}{\exp(\hat{\theta}\_t)}$, for $t=1,\dots, T$. We can use these two elements in order to implement simulation smoothing.
 
 The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where  $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\theta_t^{(i)})$, with 
 \begin{equation*} 
@@ -550,9 +550,9 @@ y_t &\sim N (0, \exp(c + \theta_t)) \\\\\\
 \label{eq:SV_model}
 \end{equation}
 
-for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.98, \boldsymbol{Q}=0.0255$. The parameter $c$ could be estimated by maximum likelihood but I keep it fixed as $c=1$ because the maximization of the log-likelihood is more stable in this way. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t)) -\frac{1}{2} y_t^2 \exp(-c-\theta_t) \right)$, and therefore $\dot{p}(y_t|\theta_t) = -\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\theta_t)$ and $\ddot{p}(y_t|\theta_t) = -  \frac{1}{2}y_t^2 \exp(-c-\theta_t)$.
+for $t=1,\dots, T$. In this case $\boldsymbol{Z}=1, \boldsymbol{T}=0.98, \boldsymbol{Q}=0.0255$. The parameter $c$ could be estimated by maximum likelihood but we keep it fixed as $c=1$ because the maximization of the log-likelihood is more stable in this way. The density for this model is $p(Y_T|\boldsymbol{\theta}) = \prod_{t=1}^T p(y_t|\theta_t)$, where $p(y_t|\theta_t) = \exp \left(-\frac{1}{2} \log (2 \pi) - \frac{1}{2} \log (\exp(c + \theta_t)) -\frac{1}{2} y_t^2 \exp(-c-\theta_t) \right)$, and therefore $\dot{p}(y_t|\theta_t) = -\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\theta_t)$ and $\ddot{p}(y_t|\theta_t) = -  \frac{1}{2}y_t^2 \exp(-c-\theta_t)$.
 
-I can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
+We can now get the mode $\hat{\boldsymbol{\theta}}$ by applying the KFS to the approximate linear Gaussian model
 
 \begin{equation*} 
 \begin{aligned}
@@ -562,7 +562,7 @@ g_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-g_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t
 \end{aligned}
 \end{equation*}
 
-for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. I can use these two elements in order to implement simulation smoothing.
+for $t=1,\dots, T$, and for an initial guess of $g_t$ (for instance $g_t = \bar{y}$ for $t=1, \dots, T$). Once $\hat{\boldsymbol{\theta}}$ has been obtained by applying the KFS, replace $\boldsymbol{g}=\hat{\boldsymbol{\theta}}$ and re-estimate $\boldsymbol{\theta}$ by KFS. Do so until convergence. The final estimate $\hat{\boldsymbol{\theta}}$ is the mode. Then obtain $z_t = \hat{\theta}\_t + \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}\left(-\frac{1}{2} + \frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)\right)$, and $A_t = \frac{1}{\frac{1}{2}y_t^2 \exp(-c-\hat{\theta}\_t)}$, for $t=1,\dots, T$. We can use these two elements in order to implement simulation smoothing.
 
 The importance weights are $w(Y_T|\boldsymbol{\theta}^{(i)}) = \frac{ p(Y_T|\boldsymbol{\theta}^{(i)})}{g(Y_T|\boldsymbol{\theta}^{(i)})}$, where $p(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T p(y_t|\theta_t^{(i)})$, with 
 \begin{equation*} 
@@ -576,7 +576,7 @@ for $t=1,\dots, T$, and  $g(Y_T|\boldsymbol{\theta}^{(i)}) = \prod_{t=1}^T g(z_t
 
 for $t=1,\dots, T$.
 
-In this specific example I have to be careful with values of $y_t$ that are very close to zero because they make $\ddot{p}(y_t|\theta_t)$ very small and therefore $A_t$ very large. This causes numerical problems. A practical way to deal with this issue is to replace these values by a small constant value (I set equal to 0.4 values that are between 0 and 0.4, and equal to -0.4 values that are between -0.4 and 0).
+In this specific example we have to be careful with values of $y_t$ that are very close to zero because they make $\ddot{p}(y_t|\theta_t)$ very small and therefore $A_t$ very large. This causes numerical problems. A practical way to deal with this issue is to replace these values by a small constant value (we set equal to 0.4 values that are between 0 and 0.4, and equal to -0.4 values that are between -0.4 and 0).
 
 Figures 3 and 4 show, respectively, the results of mode estimation, and importance sampling estimation based on the mode estimation (or local approximation) method for choosing $\boldsymbol{b}\_t$ and $\boldsymbol{C}\_t$ discussed in the "Choice of the importance density" section, for a simulated series according to model \eqref{eq:SV_model}.
 
