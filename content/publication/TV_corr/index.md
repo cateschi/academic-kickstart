@@ -34,7 +34,7 @@ url_project: ''
 url_slides: ''
 url_source: ''
 url_video: ''
-url_preprint: "https://www.cbs.nl/en-gb/background/2021/08/time-varying-correlations-in-state-space-models"
+url_preprint: "https://www.tinbergen.nl/discussion-paper/6033/21-020-iii-time-varying-state-correlations-in-state-space-models-and-their-estimation-via-indirect-inference"
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
