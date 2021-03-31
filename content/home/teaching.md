@@ -19,9 +19,9 @@ weight = 50
 <h2>Maastricht University</h2>
 
 + As tutor/teaching assistant (the description of the courses can be found [here](https://www.maastrichtuniversity.nl/education/course-finder)):
-  * Data Analytics (M.Sc. in International Business), present
-  * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - present
-  * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - present
+  * Econometric Methods II (3rd year B.Sc. in Econometrics), 2019 - 2021
+  * Quantitative Methods III (2nd year B.Sc. in International Business), 2018 - 2021
+  * Data Analytics (M.Sc. in International Business), 2020
   * Pre-academic Training in Statistics (M.A.), 2018 - 2019
   * Pre-academic Training in Mathematics (B.A.), 2019
   * Quantitative Methods I (1st year B.Sc. in International Business), 2019
