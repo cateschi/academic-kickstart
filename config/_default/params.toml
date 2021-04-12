@@ -88,12 +88,12 @@ show_related = {docs = true, page = false, post = true, project = true, publicat
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "c[dot]schiavoni[at]maastrichtuniversity[dot]nl"
+email = "caterina[dot]schiavoni[at]feem[dot]it"
 phone = ""
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = {street = "Tongersestraat 53", city = "Maastricht", region = "", postcode = "6211 LM", country = "The Netherlands", country_code = "NL"}
+address = {street = "Palazzo delle Stelline, Corso Magenta 63", city = "Milan", region = "Lombardy", postcode = "20123", country = "Italy", country_code = "IT"}
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
