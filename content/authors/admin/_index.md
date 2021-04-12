@@ -14,7 +14,7 @@ role: Researcher
 
 # Organizations/Affiliations
 organizations:
-- name: Fondazione Eni Enrico Mattei
+- name: Fondazione Eni Enrico Mattei (FEEM)
   url: "https://www.feem.it/en/"
 
 # Short bio (displayed in user profile at end of posts)
@@ -66,4 +66,4 @@ user_groups:
 - Visitors
 ---
 
-I am a researcher at Fondazione Eni Enrico Mattei, working on the sustainability of firms and cities. I am also a Ph.D. candidate in Econometrics at Maastricht University and Statistics Netherlands. The research of my thesis focuses on time series methods for the production of official statistics and to model air pollutants.
+I am a researcher at Fondazione Eni Enrico Mattei (FEEM), working on the sustainability of firms and cities. I am also a Ph.D. candidate in Econometrics at Maastricht University and Statistics Netherlands. The research of my thesis focuses on time series methods for the production of official statistics and to model air pollutants.
