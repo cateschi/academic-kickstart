@@ -17,10 +17,6 @@ weight = 70
 
 +++
 
-[Maastricht University Department of Quantitative Economics](https://www.maastrichtuniversity.nl/research/department-quantitative-economics)
-
-[CBS - Statistics Netherlands](https://www.cbs.nl/en-gb)
-
 <h2>Co-authors</h2>
 
 + [Siem Jan Koopman](http://sjkoopman.net/)
