@@ -10,12 +10,12 @@ authors:
 superuser: true
 
 # Role/position
-role: Ph.D. candidate in Econometrics
+role: Researcher
 
 # Organizations/Affiliations
 organizations:
-- name: Maastricht University and Statistics Netherlands
-  url: ""
+- name: Fondazione Eni Enrico Mattei
+  url: "https://www.feem.it/en/"
 
 # Short bio (displayed in user profile at end of posts)
 #bio: My research interests include distributed robotics, mobile computing and programmable matter.
@@ -66,4 +66,4 @@ user_groups:
 - Visitors
 ---
 
-I am a Ph.D. candidate in Econometrics at Maastricht University and Statistics Netherlands, under the supervision of Franz Palm, Stephan Smeekes and Jan van den Brakel. My research focuses on time series methods for the production of official statistics and to model air pollutants. Before starting my Ph.D., I completed an internship in data analysis at the United Nations Refugee Agency.
+I am a researcher at Fondazione Eni Enrico Mattei, working on the sustainability of firms and cities. I am also a Ph.D. candidate in Econometrics at Maastricht University and Statistics Netherlands. The research of my thesis focuses on time series methods for the production of official statistics and to model air pollutants.
