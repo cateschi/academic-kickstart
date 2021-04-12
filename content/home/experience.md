@@ -24,7 +24,7 @@ date_format = "Jan 2006"
   location = "Copenhagen, Denmark"
   date_start = "2016-09-10"
   date_end = "2017-03-10"
-  description = ""
-  Responsibilities include:
+  d# escription = ""
+  # Responsibilities include:
 
 +++
