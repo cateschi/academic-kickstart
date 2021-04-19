@@ -24,7 +24,7 @@ weight = 70
 + [Stephan Smeekes](https://www.stephansmeekes.nl/)
 + [Jan van den Brakel](https://www.maastrichtuniversity.nl/j.vandenbrakel)
 
-<h2>Other blogs</h2>
+<h2>Other people's blogs</h2>
 
 + [3blue1brown](https://www.3blue1brown.com/)
 + [Climate Econometrics blog](http://www.climateeconometrics.org/category/researchblog/)
